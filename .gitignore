@@ -1,0 +1,22 @@
+# Visual Studio / .NET build artifacts
+[Bb]in/
+[Oo]bj/
+.vs/
+publish/
+
+# Visual Studio files
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# Claude Code local settings
+.claude/
+
+# Word temp lock files
+~$*.doc
+~$*.docx
+~$*.xls
+~$*.xlsx
+~$*.ppt
+~$*.pptx

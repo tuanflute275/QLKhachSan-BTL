@@ -1,0 +1,3 @@
+Crystal Report thật	Bắt buộc theo đề bài (3.2)	Hiện đang chạy bằng PrintDocument (in được ngay, không lỗi) — cần làm theo docs/04 trên máy có cài Crystal Reports for VS. Đây là việc chỉ làm được trong Visual Studio (kéo-thả GUI), tôi không thể làm thay.
+Quyển báo cáo BTL (PDF)	Bắt buộc (mục 4.1)	Chưa viết — dùng nội dung docs/01, docs/02 làm gốc, trình bày theo đúng QuidinhTrinhbayBaocao_v4_5_2_1.pdf.
+Đóng gói ZIP nộp bài	Bắt buộc (mục 4.2)	Build Release + kèm mã nguồn + backup CSDL + báo cáo PDF.

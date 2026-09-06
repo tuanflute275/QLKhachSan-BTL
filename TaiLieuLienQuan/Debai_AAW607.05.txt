@@ -1,0 +1,47 @@
+Trường Đại học Mở Hà Nội
+Viện ĐT và Phát triển học tập suốt đời
+ Bài tập lớn
+Môn học: Lập trình Hướng sự kiện
+Đề 05: Quản lý thuê phòng tại 1 khách sạn.
+1. Mô tả chức năng:
+Khách hàng có thể liên lạc đặt phòng tại khách sạn. Khi đặt phòng thông tin về khách
+hàng phải được lưu lại trong bảng tblKhach. Đồng thời thông tin về đặt phòng cũng
+phải được lưu lại trong bảng đăng ký ( khách hàng chỉ được đăng ký phòng trống). Khi
+đến nhận, sử dụng phòng khách hàng có thể sử dụng thêm các dịch vụ khác của khách
+sạn. Thông tin về sử dụng dịch vụ theo từng ngày sẽ phải được lưu lại. Khi trả phòng
+tiền thanh toán sẽ phải được tính thêm phí sử dụng các dịch vụ này và các chi phí phát
+sinh khác.
+2. Để giải quyết bài toán trên, người ta có thể sử dụng các bảng như sau:
+ tblKhach: Chứa thong tin cá nhân của khách hang: CMND, Họ tên, ngày sinh..
+ tblNhanvien: Chứa thông tin cá nhân của nhân viên lễ tân: Mã NV, Họ tên, ….
+ tblPhong: Chứa thông tin về các phòng trong khách sạn: Số phòng, Sức chứa (
+phòng đôi, đơn ), đơn giá,..
+ tblDangky: Chứa thông tin đăng ký đặt phòng: Khách hàng, Nhân viên nhận
+đăng ký, Ngày đăng ký, Ngày nhận phòng, Ngày trả phòng…
+ tblDichvu: Chứa thông tin về giá cả dịch vụ của khách sạn: Giá dịch vụ, Tên dịch
+vụ,…
+ tblHoadonchitiet: Chứa thông tin chi tiết sử dụng theo từng ngày của phiếu đăng
+ký: Số đăng ký, Dịch vụ, Ngày sử dụng….
+3. Yêu cầu: Xây dựng phần mềm nhằm giải quyết bài toán trên.
+3.1. CSDL:
+- Thiết kế trên SQL Server.
+- Trong CSDL có các bảng trên với các trường, các bảng phục vụ cho yêu cầu của
+chương trình. (sinh viên có thể thêm bảng/trường nếu cần thiết)
+- Các trường trong các bảng khi thiết kế phải thiết lập đầy đủ các thuộc tính
+- Các bảng phải có quan hệ với nhau
+- Thiết kế các truy vấn cập nhật (thêm, sửa, xóa) thành các Stored
+Procedure lưu trữ trong csdl.
+3.2. Phần mềm:
+- Viết trên VB.NET/C#.NET, giao tiếp các chức năng thông qua hệ thống
+menu/toolbar.
+- Hạn chế các thao tác sử dụng chuột, hỗ trợ người dùng thao tác bằng bàn phím
+để tăng tốc độ sử dụng chương trình. Các chức năng cập nhật dữ liệu (thêm, sửa,
+xóa) có sử dụng các query/Stored Procedure đã thiết kế trong csdl.
+- Dữ liệu của chương trình phải được kiểm tra chặt chẽ để tránh lỗi.
+- Các báo cáo viết trên Crystal Report và được gọi qua chương trình
+4. Sản phẩm cần nộp gồm:
+Mỗi nhóm nộp 01 bộ (cách thức nộp, thời gian nộp theo qui định của từng lớp)
+gồm:
+4.1. Quyển báo cáo Bài tập lớn (bản PDF): theo cấu trúc tại:
+QuidinhTrinhbayBaocao_v4_5_2_1.pdf
+4.2. Tệp nén (chuẩn ZIP) chứa sản phẩm theo yêu cầu 3.1 và 3.2
