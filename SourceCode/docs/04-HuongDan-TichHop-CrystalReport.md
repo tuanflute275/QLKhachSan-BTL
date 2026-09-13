@@ -1,85 +1,68 @@
 # 04 — Hướng dẫn tích hợp Crystal Report thật
 
-## Vì sao có tài liệu này
+## Hiện trạng
 
-Đề bài (mục 3.2) yêu cầu "Các báo cáo viết trên Crystal Report và được gọi qua chương trình". Crystal
-Reports Designer là một **công cụ GUI tích hợp vào Visual Studio** (kéo-thả field lên khung thiết kế
-`.rpt`) — không có cách nào tạo ra file `.rpt` hợp lệ chỉ bằng cách ghi text/code, và SAP Crystal
-Reports for VS cũng không được cài trong môi trường build này để thử nghiệm. Vì vậy:
+Máy này **đã cài** SAP Crystal Reports for Visual Studio (Crystal Reports 2011 runtime, "Crystal
+Reports for .NET Framework 4.0"), và toàn bộ phần code phía C# đã được chuẩn bị sẵn:
 
-- Phần **in hóa đơn** và **báo cáo doanh thu** trong bản nộp hiện tại dùng `System.Drawing.Printing`
-  (`PrintDocument` + `PrintPreviewDialog`) — xem [Reports/InvoicePrintDocument.cs](../QLKhachSan/QLKhachSan/Reports/InvoicePrintDocument.cs)
-  và [Reports/RevenueReportPrintDocument.cs](../QLKhachSan/QLKhachSan/Reports/RevenueReportPrintDocument.cs).
-  Đây là bản **chạy được ngay, không cần cài Crystal Reports**, và đã lấy đúng dữ liệu qua các
-  Stored Procedure (`HoaDonDAL`, `BaoCaoDAL`) — chỉ khác phần trình bày cuối cùng.
-- Tài liệu này hướng dẫn bạn thay thế 2 chỗ đó bằng Crystal Report thật, trên máy đã cài
-  **SAP Crystal Reports, Developer for Visual Studio** (xem `HuongDanCaiDat.docx` mục 2.6).
+- Project đã reference `CrystalDecisions.CrystalReports.Engine`, `CrystalDecisions.Shared`,
+  `CrystalDecisions.Windows.Forms` (xem `QLKhachSan.csproj`), lấy DLL từ `SourceCode/lib/CrystalReports/`
+  (copy sẵn trong repo để build không phụ thuộc đường dẫn cài đặt Crystal Reports trên từng máy).
+- [Reports/CrystalData/dsHoaDon.cs](../QLKhachSan/QLKhachSan/Reports/CrystalData/dsHoaDon.cs) và
+  [Reports/CrystalData/dsDoanhThu.cs](../QLKhachSan/QLKhachSan/Reports/CrystalData/dsDoanhThu.cs) là 2
+  `DataSet` viết tay (không cần .xsd) — Crystal Reports Designer nhìn thấy chúng dưới
+  **Database Expert → Project Data → ADO.NET Datasets** ngay sau khi project build xong.
+- [Reports/CrystalInvoiceViewer.cs](../QLKhachSan/QLKhachSan/Reports/CrystalInvoiceViewer.cs) và
+  [Reports/CrystalRevenueViewer.cs](../QLKhachSan/QLKhachSan/Reports/CrystalRevenueViewer.cs) tự
+  tìm report class bằng reflection (`CrystalReportLoader.TryCreate("rptHoaDon")` /
+  `"rptDoanhThu"`), nạp dữ liệu qua `HoaDonDAL`/`HoaDonChiTietDAL`/`ChiPhiPhatSinhDAL`/`BaoCaoDAL`,
+  rồi hiển thị bằng `CrystalReportViewer`. **Nếu chưa tìm thấy report class (vì .rpt chưa được vẽ),
+  tự động rơi về `InvoicePrintDocument`/`RevenueReportPrintDocument` (PrintDocument)** — app luôn
+  chạy được, không bao giờ crash vì thiếu report.
+- `frmTraPhong.cs`, `frmTraCuuHoaDon.cs`, `frmBaoCaoDoanhThu.cs` đã gọi `CrystalInvoiceViewer` /
+  `CrystalRevenueViewer` thay vì gọi thẳng PrintDocument.
 
-## Bước 1 — Cài đặt (nếu chưa có)
+**Việc còn lại — chỉ làm được bằng thao tác kéo-thả trong Visual Studio Report Designer** (đây là một
+canvas vẽ nhị phân độc quyền, không có cách nào tạo ra bằng text/code một cách đáng tin cậy): vẽ 2 file
+`rptHoaDon.rpt` và `rptDoanhThu.rpt`.
 
-Theo `HuongDanCaiDat.docx`: đóng hết Visual Studio → cài SAP Crystal Reports for VS → cài thêm
-**SAP Crystal Reports Runtime Engine (64-bit)** → mở lại VS, kiểm tra `Add New Item` có mục
-"Crystal Report".
+## Bước 1 — Report hóa đơn (`rptHoaDon.rpt`)
 
-## Bước 2 — Thêm project reference
+1. Chuột phải project **QLKhachSan** → **Add → New Item… → Reporting → Crystal Report**.
+2. Đặt tên chính xác **`rptHoaDon.rpt`** (tên class sinh ra phải là `rptHoaDon` — đây là tên mà
+   `CrystalReportLoader` tìm bằng reflection). Chọn **"As a Blank Report"** → OK.
+3. Cửa sổ Database Expert hiện ra → **Project Data → ADO.NET Datasets → dsHoaDon** → bấm mũi tên để
+   thêm cả 3 bảng (`HoaDon`, `ChiTietDichVu`, `ChiPhiPhatSinh`) → Finish.
+   - Nếu không thấy `dsHoaDon` trong danh sách: Build project trước (Ctrl+Shift+B), Crystal Reports
+     chỉ nhận diện được DataSet sau khi assembly đã build.
+4. Trong Field Explorer, kéo các field của bảng **HoaDon** vào Page Header / Details:
+   `TenKhach, CMND, SoDienThoai, SoPhong, TenLoaiPhong, DonGia, NgayNhanThucTe, NgayTraThucTe,
+   TenNhanVien, NgayLapHoadon, SoNgayO, TienPhong, TienDichVu, TienPhatSinh, TongTien,
+   HinhThucThanhToan, MaHoadon`.
+5. Thêm 1 khu vực danh sách dịch vụ: cách đơn giản nhất là insert một Subreport trỏ tới bảng
+   `ChiTietDichVu` (Insert → Subreport, hoặc thêm 1 Group theo `MaDangky` ngay trên report chính vì
+   dataset chỉ chứa đúng 1 hóa đơn mỗi lần in). Field cần: `TenDichvu, NgaySuDung, SoLuong, DonGia,
+   ThanhTien`.
+6. Tương tự cho `ChiPhiPhatSinh`: `LoaiPhi, SoTien, NgayPhatSinh`.
+7. Save. Nhấn F5/Start hoặc mở lại form Trả phòng / Tra cứu hóa đơn để test — `CrystalInvoiceViewer`
+   sẽ tự động dùng report này thay vì bản PrintDocument ngay khi tìm thấy class `rptHoaDon`.
 
-Sau khi cài, trong `QLKhachSan.csproj` sẽ có sẵn các reference của Crystal Reports (VS tự thêm khi bạn
-"Add New Item → Crystal Report"). Không cần tự tay sửa `.csproj` cho bước này — cứ để Visual Studio làm.
+## Bước 2 — Report doanh thu (`rptDoanhThu.rpt`)
 
-## Bước 3 — Tạo report hóa đơn (`rptHoaDon.rpt`)
+1. Add New Item → Crystal Report → đặt tên chính xác **`rptDoanhThu.rpt`** → Blank Report.
+2. Database Expert → Project Data → ADO.NET Datasets → **dsDoanhThu** → thêm cả 3 bảng (`TongHop`,
+   `DoanhThuDichVu`, `DoanhThuPhong`).
+3. Report chính đặt trên bảng `TongHop` (luôn có đúng 1 dòng): hiển thị `TuNgay, DenNgay,
+   SoLuongHoaDon, TongTienPhong, TongTienDichVu, TongTienPhatSinh, TongDoanhThu` ở phần đầu.
+4. Insert 2 Subreport: một trỏ tới `DoanhThuDichVu` (field `TenDichvu, TongSoLuong, TongDoanhThu`),
+   một trỏ tới `DoanhThuPhong` (field `SoPhong, TenLoaiPhong, SoLuotThue, TongSoDem,
+   TongDoanhThuPhong`).
+5. Save. Mở form Báo cáo doanh thu → nút "In báo cáo" sẽ tự dùng report này.
 
-1. Chuột phải project → **Add → New Item → Reporting → Crystal Report** → đặt tên `rptHoaDon.rpt`,
-   chọn "As a Blank Report".
-2. Report cần các trường: `MaHoadon, NgayLapHoadon, TenKhach, CMND, SoDienThoai, SoPhong,
-   TenLoaiPhong, DonGia, NgayNhanThucTe, NgayTraThucTe, TenNhanVien, SoNgayO, TienPhong,
-   TienDichVu, TienPhatSinh, TongTien, HinhThucThanhToan` — đúng các cột trả về từ
-   `sp_Hoadon_ChiTiet` (xem `HoaDonDAL.ChiTiet`).
-3. Cách nạp field nhanh nhất: **Add New Item → DataSet (.xsd)** đặt tên `dsHoaDon.xsd`, thêm 1
-   DataTable tay với đúng các cột trên (khớp tên/kiểu dữ liệu với bảng ở bước 2). Khi thiết kế
-   `rptHoaDon.rpt`, chọn Database Expert → Project Data → ADO.NET DataSets → `dsHoaDon` → kéo field
-   vào khung thiết kế như bình thường.
-4. Thêm 1 phần "Chi tiết dịch vụ" và "Chi phí phát sinh" dạng subreport hoặc thêm luôn 2 DataTable
-   nữa vào `dsHoaDon.xsd` (khớp cột trả về từ `HoaDonChiTietDAL.DanhSachTheoDangky` và
-   `ChiPhiPhatSinhDAL.DanhSachTheoDangky`) rồi dùng Subreport trỏ tới các bảng đó.
+## Đóng gói khi nộp bài
 
-## Bước 4 — Form hiển thị report
-
-Thêm 1 Form mới `frmXemHoaDonCrystal` (WinForms), kéo control **CrystalReportViewer** vào từ Toolbox.
-Code gọi report (thay cho `InvoicePrintDocument.XemTruocHoaDon`):
-
-```csharp
-using CrystalDecisions.CrystalReports.Engine;
-using QLKhachSan.DataAccess;
-
-var report = new rptHoaDon(); // class được sinh ra từ rptHoaDon.rpt
-
-var dsHoaDon = new dsHoaDon();
-var hd = HoaDonDAL.ChiTiet(maHoadon);
-dsHoaDon.HoaDon.Rows.Add(/* map các cột từ hd vào đúng thứ tự cột trong dsHoaDon.HoaDon */);
-// tương tự nạp dsHoaDon.ChiTietDichVu và dsHoaDon.ChiPhiPhatSinh
-// từ HoaDonChiTietDAL.DanhSachTheoDangky(maDangky) và ChiPhiPhatSinhDAL.DanhSachTheoDangky(maDangky)
-
-report.SetDataSource(dsHoaDon);
-crystalReportViewer1.ReportSource = report;
-```
-
-Gọi `new frmXemHoaDonCrystal(maHoadon).ShowDialog()` thay cho dòng
-`InvoicePrintDocument.XemTruocHoaDon(maHoadon)` trong `frmTraPhong.cs` và `frmTraCuuHoaDon.cs`.
-
-## Bước 5 — Report doanh thu (`rptDoanhThuDichVu.rpt`)
-
-Làm tương tự với dữ liệu từ `BaoCaoDAL.DoanhThuDichVu`, `BaoCaoDAL.DoanhThuPhong`,
-`BaoCaoDAL.TongHop` (thay cho `RevenueReportPrintDocument.XemTruoc`).
-
-## Bước 6 — Đóng gói khi nộp bài
-
-Máy chấm bài có thể **không cài Crystal Reports** → bắt buộc kèm theo bộ cài
-**SAP Crystal Reports Runtime Engine (64-bit)** trong file nộp, hoặc dùng Visual Studio Installer
-Projects để tạo file cài đặt tự động kèm runtime (mục "Đóng gói sản phẩm" trong
-[03-KeHoach-Code.md](./03-KeHoach-Code.md)).
-
-## Vì sao giữ lại cả 2 cách
-
-Ngay cả sau khi tích hợp Crystal Report thật, nên **giữ lại** `InvoicePrintDocument` /
-`RevenueReportPrintDocument` làm phương án dự phòng: nếu máy chấm/máy demo không cài được Crystal
-Reports Runtime kịp lúc, bạn vẫn có bản in hoạt động để không bị mất điểm chức năng.
+Máy chấm bài có thể không cài Crystal Reports Runtime → bắt buộc kèm theo bộ cài **SAP Crystal
+Reports Runtime Engine (64-bit)** trong file nộp (mục "Đóng gói sản phẩm" trong
+[03-KeHoach-Code.md](./03-KeHoach-Code.md)). Vì `CrystalInvoiceViewer`/`CrystalRevenueViewer` tự rơi
+về PrintDocument khi thiếu report/runtime, app vẫn chạy được ngay cả khi máy chấm thiếu runtime —
+chỉ mất phần trình bày Crystal Report thật.

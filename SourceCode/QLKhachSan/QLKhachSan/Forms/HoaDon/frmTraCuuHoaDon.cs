@@ -80,7 +80,7 @@ namespace QLKhachSan.Forms.HoaDon
                 return;
             }
             var row = (DataRowView)dgv.CurrentRow.DataBoundItem;
-            InvoicePrintDocument.XemTruocHoaDon(Convert.ToInt32(row["MaHoadon"]));
+            CrystalInvoiceViewer.XemTruocHoaDon(Convert.ToInt32(row["MaHoadon"]));
         }
     }
 }

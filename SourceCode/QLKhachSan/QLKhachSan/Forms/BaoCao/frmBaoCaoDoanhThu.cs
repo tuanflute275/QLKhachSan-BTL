@@ -34,7 +34,7 @@ namespace QLKhachSan.Forms.BaoCao
             btnXem = new Button { Text = "Xem báo cáo", Location = new System.Drawing.Point(416, 4), Width = 110 };
             btnIn = new Button { Text = "In báo cáo", Location = new System.Drawing.Point(532, 4), Width = 110 };
             btnXem.Click += (s, e) => XemBaoCao();
-            btnIn.Click += (s, e) => RevenueReportPrintDocument.XemTruoc(dtpTu.Value.Date, dtpDen.Value.Date);
+            btnIn.Click += (s, e) => CrystalRevenueViewer.XemTruoc(dtpTu.Value.Date, dtpDen.Value.Date);
             dtpTu.KeyDown += (s, e) => { if (e.KeyCode == Keys.Enter) { e.Handled = true; XemBaoCao(); } };
             dtpDen.KeyDown += (s, e) => { if (e.KeyCode == Keys.Enter) { e.Handled = true; XemBaoCao(); } };
 

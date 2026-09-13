@@ -325,7 +325,7 @@ namespace QLKhachSan.Forms.TraPhong
                 MessageBox.Show("Trả phòng thành công! Đã lập hóa đơn #" + maHoadon, "Thông báo",
                     MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                InvoicePrintDocument.XemTruocHoaDon(maHoadon);
+                CrystalInvoiceViewer.XemTruocHoaDon(maHoadon);
 
                 LoadDanhSachDangKy();
             }
