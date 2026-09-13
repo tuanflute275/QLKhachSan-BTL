@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Bao cao BTL</title>
+<style>
+  @page { size: A4; margin: 35mm 20mm 30mm 35mm; }
+  body { font-family: 'Times New Roman', Times, serif; font-size: 14pt; line-height: 1.5; }
+  p { margin: 0 0 6pt 0; text-align: justify; }
+  h1 { text-align:center; font-weight:bold; text-transform:uppercase; font-size:16pt; page-break-before: always; margin-top:0; }
+  h2 { font-weight:bold; font-size:14pt; margin-bottom:4pt; }
+  h3 { font-weight:bold; font-style:italic; font-size:14pt; margin-bottom:4pt; }
+  .center { text-align:center; }
+  .bold { font-weight:bold; }
+  .italic { font-style:italic; }
+  table { border-collapse: collapse; width:100%; margin: 4pt 0 10pt 0; }
+  table, th, td { border: 1px solid #000; padding:4px 6px; font-size:13pt; vertical-align:top; }
+  th { background:#e8eef7; font-weight:bold; text-align:center; }
+  .cap-table { text-align:center; font-weight:bold; margin-top:10pt; margin-bottom:2pt; }
+  .cap-fig { text-align:center; font-weight:bold; margin-top:4pt; margin-bottom:10pt; }
+  .cover { text-align:center; }
+  .placeholder { color:#888; }
+  .formula-table { border:none; }
+  .formula-table td { border:none; text-align:left; }
+  .formula-table td.num { text-align:right; width:60px; }
+  ul, ol { margin-top:0; margin-bottom:6pt; }
+  .no-indent { text-indent:0; }
+  .toc-marker, .break-marker { color:white; font-size:1pt; }
+</style>
+</head>
+<body>
+
+<!-- ============================= BIA CHINH ============================= -->
+<div class="cover">
+<p>VIỆN ĐẠI HỌC MỞ HÀ NỘI</p>
+<p class="bold">KHOA CÔNG NGHỆ THÔNG TIN</p>
+<p>___________________</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p class="placeholder">[Dán logo Khoa Công nghệ Thông tin tại đây]</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p class="bold">Nguyễn Văn Tuấn, Trần Quốc Trung, Đậu Phi Tuấn, Trần Anh Tú</p>
+<p>&nbsp;</p>
+<p style="font-size:18pt;" class="bold">QUẢN LÝ THUÊ PHÒNG KHÁCH SẠN</p>
+<p>Môn: Lập trình Hướng sự kiện</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p style="font-size:16pt;" class="bold">BÁO CÁO BÀI TẬP LỚN</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>Hà Nội – 2026</p>
+</div>
+
+<p style="page-break-before: always;">&nbsp;</p>
+
+<!-- ============================= BIA PHU ============================= -->
+<div class="cover">
+<p>VIỆN ĐẠI HỌC MỞ HÀ NỘI</p>
+<p class="bold">KHOA CÔNG NGHỆ THÔNG TIN</p>
+<p>___________________</p>
+<p>&nbsp;</p>
+<p class="placeholder">[Dán logo Khoa Công nghệ Thông tin tại đây]</p>
+<p>&nbsp;</p>
+<table style="width:70%; margin:0 auto; border:none;">
+<tr><td style="border:none;">1. Nguyễn Văn Tuấn</td><td style="border:none;">– Lớp: <span class="placeholder">………………</span></td></tr>
+<tr><td style="border:none;">2. Trần Quốc Trung</td><td style="border:none;">– Lớp: <span class="placeholder">………………</span></td></tr>
+<tr><td style="border:none;">3. Đậu Phi Tuấn</td><td style="border:none;">– Lớp: <span class="placeholder">………………</span></td></tr>
+<tr><td style="border:none;">4. Trần Anh Tú</td><td style="border:none;">– Lớp: <span class="placeholder">………………</span></td></tr>
+</table>
+<p>&nbsp;</p>
+<p style="font-size:18pt;" class="bold">QUẢN LÝ THUÊ PHÒNG KHÁCH SẠN</p>
+<p>Môn: Lập trình Hướng sự kiện</p>
+<p>&nbsp;</p>
+<p>Giảng viên hướng dẫn:</p>
+<p class="placeholder">......................................</p>
+<p>&nbsp;</p>
+<p style="font-size:16pt;" class="bold">BÁO CÁO BÀI TẬP LỚN</p>
+<p>&nbsp;</p>
+<p>Hà Nội – 2026</p>
+</div>
+
+<p class="break-marker" style="page-break-before: always;">ZZBREAKFRONTMATTERZZ</p>
+
+<!-- ============================= DE BAI (thay Nhiem vu Do an) ============================= -->
+<h1>Đề bài</h1>
+<p class="center italic">(Đề bài nhận từ giảng viên bộ môn, thay cho phần "Nhiệm vụ Đồ án" theo qui định đối với Báo cáo Bài tập lớn)</p>
+<p>&nbsp;</p>
+<p class="center bold">Đề 05: Quản lý thuê phòng tại 1 khách sạn</p>
+<h3>1. Mô tả chức năng</h3>
+<p>Khách hàng có thể liên lạc đặt phòng tại khách sạn. Khi đặt phòng thông tin về khách hàng phải được lưu lại trong bảng tblKhach. Đồng thời thông tin về đặt phòng cũng phải được lưu lại trong bảng đăng ký (khách hàng chỉ được đăng ký phòng trống). Khi đến nhận, sử dụng phòng khách hàng có thể sử dụng thêm các dịch vụ khác của khách sạn. Thông tin về sử dụng dịch vụ theo từng ngày sẽ phải được lưu lại. Khi trả phòng tiền thanh toán sẽ phải được tính thêm phí sử dụng các dịch vụ này và các chi phí phát sinh khác.</p>
+<h3>2. Để giải quyết bài toán trên, người ta có thể sử dụng các bảng như sau</h3>
+<ul>
+<li>tblKhach: Chứa thông tin cá nhân của khách hàng: CMND, Họ tên, ngày sinh...</li>
+<li>tblNhanvien: Chứa thông tin cá nhân của nhân viên lễ tân: Mã NV, Họ tên, ...</li>
+<li>tblPhong: Chứa thông tin về các phòng trong khách sạn: Số phòng, Sức chứa (phòng đôi, đơn), đơn giá,..</li>
+<li>tblDangky: Chứa thông tin đăng ký đặt phòng: Khách hàng, Nhân viên nhận đăng ký, Ngày đăng ký, Ngày nhận phòng, Ngày trả phòng…</li>
+<li>tblDichvu: Chứa thông tin về giá cả dịch vụ của khách sạn: Giá dịch vụ, Tên dịch vụ,…</li>
+<li>tblHoadonchitiet: Chứa thông tin chi tiết sử dụng theo từng ngày của phiếu đăng ký: Số đăng ký, Dịch vụ, Ngày sử dụng….</li>
+</ul>
+<h3>3. Yêu cầu</h3>
+<p><span class="bold">3.1. CSDL:</span> Thiết kế trên SQL Server; đầy đủ trường/thuộc tính; các bảng có quan hệ với nhau; các truy vấn cập nhật (thêm, sửa, xóa) phải thiết kế thành Stored Procedure lưu trong CSDL.</p>
+<p><span class="bold">3.2. Phần mềm:</span> Viết trên VB.NET/C#.NET, giao tiếp qua hệ thống menu/toolbar; hạn chế thao tác chuột, hỗ trợ thao tác bàn phím; các chức năng cập nhật dữ liệu dùng Stored Procedure; dữ liệu phải được kiểm tra chặt chẽ; báo cáo viết trên Crystal Report.</p>
+
+<!-- ============================= PHAN CONG NHIEM VU ============================= -->
+<h1>Phân công nhiệm vụ và đóng góp cá nhân</h1>
+<h2>1. Thông tin nhóm</h2>
+<table>
+<tr><th>STT</th><th>Họ và tên</th><th>Vai trò trong nhóm</th></tr>
+<tr><td>1</td><td>Nguyễn Văn Tuấn</td><td>Nhóm trưởng kỹ thuật (Dev) – phụ trách CSDL, xử lý nghiệp vụ, tích hợp hệ thống</td></tr>
+<tr><td>2</td><td>Trần Quốc Trung</td><td>Thành viên – phát triển giao diện module Khách hàng &amp; Đặt phòng</td></tr>
+<tr><td>3</td><td>Đậu Phi Tuấn</td><td>Thành viên – phát triển giao diện module Phòng &amp; Dịch vụ</td></tr>
+<tr><td>4</td><td>Trần Anh Tú</td><td>Thành viên – phát triển giao diện module Nhân viên &amp; Hóa đơn</td></tr>
+</table>
+
+<h2>2. Bảng phân công nhiệm vụ chi tiết</h2>
+<p class="bold">2.1. Nguyễn Văn Tuấn (Dev – phụ trách kỹ thuật lõi)</p>
+<table>
+<tr><th>Đầu việc</th><th>Mô tả chi tiết</th></tr>
+<tr><td>Thiết kế CSDL</td><td>Thiết kế toàn bộ bảng, khóa chính/khóa ngoại, quan hệ giữa các bảng trên SQL Server</td></tr>
+<tr><td>Viết Stored Procedure</td><td>Viết các Stored Procedure thêm/sửa/xóa, thủ tục kiểm tra phòng trống, tính tổng tiền thanh toán</td></tr>
+<tr><td>Xây dựng kiến trúc chương trình</td><td>Tạo project chuẩn, lớp kết nối CSDL dùng chung, quy ước đặt tên để cả nhóm code theo cùng khuôn mẫu</td></tr>
+<tr><td>Xử lý nghiệp vụ phức tạp</td><td>Logic kiểm tra phòng trống khi đăng ký, tính tiền phòng + dịch vụ + phụ phí phát sinh khi trả phòng</td></tr>
+<tr><td>Thiết kế &amp; tích hợp báo cáo</td><td>Thiết kế report hóa đơn thanh toán, report doanh thu theo dịch vụ</td></tr>
+<tr><td>Tích hợp &amp; sửa lỗi hệ thống</td><td>Gộp code các module vào 1 chương trình thống nhất, kiểm tra và sửa lỗi phát sinh khi ghép nối</td></tr>
+<tr><td>Đóng gói sản phẩm</td><td>Build bản release, nén file ZIP theo đúng yêu cầu đề bài</td></tr>
+</table>
+
+<p class="bold">2.2. Trần Quốc Trung – Module Khách hàng &amp; Đặt phòng</p>
+<table>
+<tr><th>Đầu việc</th><th>Mô tả chi tiết</th></tr>
+<tr><td>Tìm hiểu nghiệp vụ</td><td>Tìm hiểu quy trình đặt phòng khách sạn thực tế để góp ý cho thiết kế CSDL</td></tr>
+<tr><td>Giao diện Khách hàng</td><td>Form quản lý thông tin khách hàng: thêm/sửa/xóa/tìm kiếm, gọi Stored Procedure</td></tr>
+<tr><td>Giao diện Đặt phòng</td><td>Form đăng ký đặt phòng: chọn phòng trống, nhập ngày nhận/trả, chọn nhân viên nhận đăng ký</td></tr>
+<tr><td>Kiểm thử module</td><td>Tự kiểm tra chức năng module với dữ liệu mẫu trước khi bàn giao tích hợp</td></tr>
+</table>
+
+<p class="bold">2.3. Đậu Phi Tuấn – Module Phòng &amp; Dịch vụ</p>
+<table>
+<tr><th>Đầu việc</th><th>Mô tả chi tiết</th></tr>
+<tr><td>Chuẩn bị dữ liệu mẫu</td><td>Thu thập/soạn dữ liệu mẫu về loại phòng, đơn giá, danh mục dịch vụ thực tế</td></tr>
+<tr><td>Giao diện Phòng</td><td>Form quản lý phòng: số phòng, loại phòng, đơn giá, trạng thái phòng</td></tr>
+<tr><td>Giao diện Dịch vụ</td><td>Form quản lý danh mục dịch vụ, form nhập sử dụng dịch vụ theo ngày</td></tr>
+<tr><td>Kiểm thử module</td><td>Tự kiểm tra chức năng module với dữ liệu mẫu trước khi bàn giao tích hợp</td></tr>
+</table>
+
+<p class="bold">2.4. Trần Anh Tú – Module Nhân viên &amp; Hóa đơn thanh toán</p>
+<table>
+<tr><th>Đầu việc</th><th>Mô tả chi tiết</th></tr>
+<tr><td>Cài đặt môi trường chung</td><td>Tổng hợp và kiểm tra cả nhóm đã cài đủ SQL Server, SSMS, Visual Studio, Crystal Report</td></tr>
+<tr><td>Giao diện Nhân viên</td><td>Form quản lý thông tin nhân viên lễ tân: thêm/sửa/xóa/tìm kiếm</td></tr>
+<tr><td>Giao diện Hóa đơn/Trả phòng</td><td>Form lập hóa đơn khi trả phòng: hiển thị tiền phòng + tổng tiền dịch vụ đã dùng</td></tr>
+<tr><td>Kiểm thử module</td><td>Tự kiểm tra chức năng module với dữ liệu mẫu trước khi bàn giao tích hợp</td></tr>
+</table>
+
+<h2>3. Kế hoạch thực hiện theo tiến độ (05/09 – 16/09/2026)</h2>
+<table>
+<tr><th>Giai đoạn</th><th>Thời gian</th><th>Nội dung công việc</th></tr>
+<tr><td>GĐ1 – Khởi động</td><td>05/09 – 06/09</td><td>Phân tích đề bài, thống nhất phân công &amp; kế hoạch, cài đặt môi trường</td></tr>
+<tr><td>GĐ2 – Thiết kế CSDL</td><td>07/09 – 08/09</td><td>Thiết kế bảng, khóa, quan hệ trên SQL Server</td></tr>
+<tr><td>GĐ3 – Viết Stored Procedure</td><td>09/09</td><td>Viết Stored Procedure thêm/sửa/xóa và các thủ tục nghiệp vụ</td></tr>
+<tr><td>GĐ4 – Phát triển module</td><td>09/09 – 12/09</td><td>Code song song các module giao diện, phát triển nghiệp vụ tính tiền</td></tr>
+<tr><td>GĐ5 – Tích hợp &amp; Báo cáo</td><td>12/09 – 13/09</td><td>Ghép nối các module, thiết kế và tích hợp báo cáo</td></tr>
+<tr><td>GĐ6 – Kiểm thử toàn bộ</td><td>14/09</td><td>Chạy thử toàn bộ chương trình, lập danh sách lỗi và sửa</td></tr>
+<tr><td>GĐ7 – Viết báo cáo</td><td>14/09 – 15/09</td><td>Viết các phần báo cáo theo phân công, tổng hợp theo đúng cấu trúc quy định</td></tr>
+<tr><td>GĐ8 – Hoàn thiện &amp; Nộp bài</td><td>16/09</td><td>Rà soát tổng thể sản phẩm và báo cáo, đóng gói file ZIP, nộp bài</td></tr>
+</table>
+
+<!-- ============================= LOI NOI DAU ============================= -->
+<h1>Lời nói đầu</h1>
+<p>Trong bối cảnh ngành dịch vụ lưu trú ngày càng phát triển, việc quản lý hoạt động thuê phòng khách sạn bằng các phương pháp thủ công (sổ sách, bảng tính) đã bộc lộ nhiều hạn chế: dễ nhầm lẫn khi kiểm tra phòng trống, khó tổng hợp doanh thu, và không thuận tiện khi tra cứu lịch sử khách hàng. Xuất phát từ thực tế đó, nhóm chúng em lựa chọn đề tài "Quản lý thuê phòng khách sạn" (Đề 05) làm Bài tập lớn cho môn học Lập trình Hướng sự kiện, nhằm vận dụng kiến thức đã học về lập trình Windows Forms, ADO.NET và SQL Server vào một bài toán quản lý có tính thực tiễn cao.</p>
+<p>Trong quá trình thực hiện, nhóm đã tập trung giải quyết ba nhóm vấn đề cốt lõi mà đề bài đặt ra: thiết kế một cơ sở dữ liệu quan hệ chặt chẽ, đảm bảo toàn bộ thao tác cập nhật dữ liệu được thực hiện thông qua Stored Procedure; xây dựng một ứng dụng desktop có giao diện rõ ràng, thao tác nhanh bằng bàn phím; và cài đặt đúng đắn nghiệp vụ trọng tâm của bài toán – kiểm tra phòng trống khi đăng ký và tính tiền thanh toán khi trả phòng.</p>
+<p>Nhóm xin chân thành cảm ơn giảng viên bộ môn <span class="placeholder">……………………</span> đã tận tình hướng dẫn, góp ý trong suốt quá trình thực hiện Bài tập lớn. Do thời gian thực hiện có hạn và đây là lần đầu nhóm triển khai một hệ thống quản lý hoàn chỉnh, báo cáo và sản phẩm chắc chắn còn nhiều thiếu sót. Nhóm rất mong nhận được sự góp ý của giảng viên để hoàn thiện hơn.</p>
+<p style="text-align:right;">Hà Nội, tháng 9 năm 2026<br/>Nhóm thực hiện</p>
+
+<!-- ============================= MUC LUC ============================= -->
+<h1>Mục lục</h1>
+<p class="italic" style="text-align:center;">(Đánh số trang cụ thể sẽ cập nhật sau khi hoàn thiện bố cục cuối cùng)</p>
+<table class="formula-table">
+<tr><td class="bold">Đề bài</td><td class="num">iii</td></tr>
+<tr><td class="bold">Phân công nhiệm vụ và đóng góp cá nhân</td><td class="num">iv</td></tr>
+<tr><td class="bold">Lời nói đầu</td><td class="num">vi</td></tr>
+<tr><td class="bold">Mục lục</td><td class="num">vii</td></tr>
+<tr><td class="bold">Tóm tắt đồ án</td><td class="num">viii</td></tr>
+<tr><td class="bold">Danh mục các chữ viết tắt</td><td class="num">ix</td></tr>
+<tr><td class="bold">Danh mục các bảng</td><td class="num">x</td></tr>
+<tr><td class="bold">Danh mục hình vẽ</td><td class="num">xi</td></tr>
+<tr><td class="bold">CHƯƠNG 1. TỔNG QUAN VỀ ĐỀ TÀI</td><td class="num">1</td></tr>
+<tr><td>&nbsp;&nbsp;1.1. Lý do chọn đề tài</td><td class="num">1</td></tr>
+<tr><td>&nbsp;&nbsp;1.2. Mục tiêu và phạm vi</td><td class="num">1</td></tr>
+<tr><td>&nbsp;&nbsp;1.3. Công nghệ sử dụng</td><td class="num">2</td></tr>
+<tr><td>&nbsp;&nbsp;1.4. Bố cục báo cáo</td><td class="num">2</td></tr>
+<tr><td class="bold">CHƯƠNG 2. PHÂN TÍCH NGHIỆP VỤ HỆ THỐNG</td><td class="num">3</td></tr>
+<tr><td>&nbsp;&nbsp;2.1. Tác nhân của hệ thống</td><td class="num">3</td></tr>
+<tr><td>&nbsp;&nbsp;2.2. Danh sách chức năng</td><td class="num">3</td></tr>
+<tr><td>&nbsp;&nbsp;2.3. Các quy tắc nghiệp vụ quan trọng</td><td class="num">4</td></tr>
+<tr><td>&nbsp;&nbsp;2.4. Đề xuất bổ sung so với đề bài</td><td class="num">5</td></tr>
+<tr><td class="bold">CHƯƠNG 3. THIẾT KẾ CƠ SỞ DỮ LIỆU</td><td class="num">6</td></tr>
+<tr><td>&nbsp;&nbsp;3.1. Sơ đồ quan hệ thực thể</td><td class="num">6</td></tr>
+<tr><td>&nbsp;&nbsp;3.2. Thiết kế chi tiết các bảng</td><td class="num">7</td></tr>
+<tr><td>&nbsp;&nbsp;3.3. Ràng buộc khóa ngoại</td><td class="num">11</td></tr>
+<tr><td>&nbsp;&nbsp;3.4. Danh sách Stored Procedure</td><td class="num">11</td></tr>
+<tr><td>&nbsp;&nbsp;3.5. Dữ liệu mẫu</td><td class="num">12</td></tr>
+<tr><td class="bold">CHƯƠNG 4. THIẾT KẾ VÀ XÂY DỰNG CHƯƠNG TRÌNH</td><td class="num">13</td></tr>
+<tr><td>&nbsp;&nbsp;4.1. Kiến trúc phần mềm</td><td class="num">13</td></tr>
+<tr><td>&nbsp;&nbsp;4.2. Cấu trúc project và các module</td><td class="num">13</td></tr>
+<tr><td>&nbsp;&nbsp;4.3. Quy ước lập trình</td><td class="num">13</td></tr>
+<tr><td>&nbsp;&nbsp;4.4. Thiết kế giao diện và chuẩn thao tác bàn phím</td><td class="num">14</td></tr>
+<tr><td>&nbsp;&nbsp;4.5. Chức năng đăng nhập và phân quyền</td><td class="num">14</td></tr>
+<tr><td>&nbsp;&nbsp;4.6. Chức năng in ấn và báo cáo</td><td class="num">15</td></tr>
+<tr><td class="bold">CHƯƠNG 5. KIỂM THỬ VÀ KẾT QUẢ ĐẠT ĐƯỢC</td><td class="num">16</td></tr>
+<tr><td>&nbsp;&nbsp;5.1. Kiểm thử tầng cơ sở dữ liệu</td><td class="num">16</td></tr>
+<tr><td>&nbsp;&nbsp;5.2. Kiểm thử ứng dụng</td><td class="num">16</td></tr>
+<tr><td>&nbsp;&nbsp;5.3. Kết quả đạt được</td><td class="num">17</td></tr>
+<tr><td>&nbsp;&nbsp;5.4. Hạn chế</td><td class="num">17</td></tr>
+<tr><td class="bold">KẾT LUẬN</td><td class="num">18</td></tr>
+<tr><td class="bold">TÀI LIỆU THAM KHẢO</td><td class="num">19</td></tr>
+<tr><td class="bold">PHỤ LỤC</td><td class="num">1</td></tr>
+</table>
+
+<!-- ============================= TOM TAT ============================= -->
+<h1>Tóm tắt đồ án</h1>
+<p>Báo cáo trình bày quá trình phân tích, thiết kế và xây dựng phần mềm "Quản lý thuê phòng khách sạn" trên nền tảng C# Windows Forms và SQL Server. Hệ thống giải quyết trọn vẹn quy trình nghiệp vụ khách sạn: tiếp nhận đăng ký đặt phòng (chỉ cho phép chọn phòng còn trống trong khoảng ngày yêu cầu), làm thủ tục nhận phòng, ghi nhận sử dụng dịch vụ theo từng ngày lưu trú, và lập hóa đơn thanh toán khi trả phòng với công thức tính tiền gồm ba thành phần: tiền phòng, tiền dịch vụ và các chi phí phát sinh khác.</p>
+<p>Về cơ sở dữ liệu, hệ thống gồm 10 bảng quan hệ (6 bảng bắt buộc theo đề bài và 4 bảng bổ sung nhằm chuẩn hóa dữ liệu và hỗ trợ đầy đủ nghiệp vụ), cùng 42 Stored Procedure phục vụ toàn bộ thao tác thêm/sửa/xóa/truy vấn. Toàn bộ Stored Procedure đã được kiểm thử trực tiếp trên SQL Server, bao gồm cả các tình huống nghiệp vụ đặc biệt như đặt phòng trùng lịch hoặc trả phòng tính tiền.</p>
+<p>Về phần mềm, chương trình được tổ chức theo kiến trúc phân tầng (Common – Entities – DataAccess – Forms – Reports), giao tiếp với người dùng qua hệ thống MenuStrip/ToolStrip theo mô hình MDI, hỗ trợ đầy đủ thao tác bằng bàn phím (phím tắt F2–F5, Enter chuyển control, Esc hủy thao tác) nhằm tăng tốc độ nhập liệu. Hệ thống có thêm chức năng đăng nhập và phân quyền Admin/Lễ tân để tăng tính thực tế của sản phẩm.</p>
+<p>Kết quả đạt được: chương trình build thành công không lỗi, đã kiểm thử toàn bộ luồng nghiệp vụ chính, đáp ứng đầy đủ các yêu cầu bắt buộc của đề bài về CSDL và phần mềm.</p>
+
+<!-- ============================= DANH MUC VIET TAT ============================= -->
+<h1>Danh mục các chữ viết tắt</h1>
+<table>
+<tr><th>STT</th><th>Tên viết tắt</th><th>Tên đầy đủ</th><th>Dịch/giải thích</th></tr>
+<tr><td>1</td><td>CSDL</td><td>—</td><td>Cơ sở dữ liệu</td></tr>
+<tr><td>2</td><td>BTL</td><td>—</td><td>Bài tập lớn</td></tr>
+<tr><td>3</td><td>SP</td><td>Stored Procedure</td><td>Thủ tục lưu trữ trong CSDL</td></tr>
+<tr><td>4</td><td>DAL</td><td>Data Access Layer</td><td>Tầng truy cập dữ liệu</td></tr>
+<tr><td>5</td><td>MDI</td><td>Multiple Document Interface</td><td>Giao diện đa cửa sổ con trong 1 cửa sổ chính</td></tr>
+<tr><td>6</td><td>ADO.NET</td><td>ActiveX Data Objects .NET</td><td>Thư viện truy cập CSDL của .NET Framework</td></tr>
+<tr><td>7</td><td>CRUD</td><td>Create, Read, Update, Delete</td><td>Thêm, đọc, sửa, xóa dữ liệu</td></tr>
+<tr><td>8</td><td>FK</td><td>Foreign Key</td><td>Khóa ngoại</td></tr>
+<tr><td>9</td><td>PK</td><td>Primary Key</td><td>Khóa chính</td></tr>
+<tr><td>10</td><td>ERD</td><td>Entity Relationship Diagram</td><td>Sơ đồ quan hệ thực thể</td></tr>
+<tr><td>11</td><td>GUI</td><td>Graphical User Interface</td><td>Giao diện đồ họa người dùng</td></tr>
+<tr><td>12</td><td>VNĐ</td><td>—</td><td>Việt Nam Đồng</td></tr>
+</table>
+
+<!-- ============================= DANH MUC BANG ============================= -->
+<h1>Danh mục các bảng</h1>
+<table class="formula-table">
+<tr><td>Bảng 2.1. Danh sách chức năng của hệ thống</td><td class="num">…</td></tr>
+<tr><td>Bảng 2.2. Vòng đời trạng thái của một đăng ký</td><td class="num">…</td></tr>
+<tr><td>Bảng 3.1. Cấu trúc bảng tblLoaiPhong</td><td class="num">…</td></tr>
+<tr><td>Bảng 3.2. Cấu trúc bảng tblPhong</td><td class="num">…</td></tr>
+<tr><td>Bảng 3.3. Cấu trúc bảng tblKhach</td><td class="num">…</td></tr>
+<tr><td>Bảng 3.4. Cấu trúc bảng tblNhanvien</td><td class="num">…</td></tr>
+<tr><td>Bảng 3.5. Cấu trúc bảng tblDichvu</td><td class="num">…</td></tr>
+<tr><td>Bảng 3.6. Cấu trúc bảng tblDangky</td><td class="num">…</td></tr>
+<tr><td>Bảng 3.7. Cấu trúc bảng tblHoadonchitiet</td><td class="num">…</td></tr>
+<tr><td>Bảng 3.8. Cấu trúc bảng tblChiphiphatsinh</td><td class="num">…</td></tr>
+<tr><td>Bảng 3.9. Cấu trúc bảng tblHoadon</td><td class="num">…</td></tr>
+<tr><td>Bảng 3.10. Danh sách Stored Procedure chính</td><td class="num">…</td></tr>
+<tr><td>Bảng 4.1. Chuẩn phím tắt áp dụng cho các form</td><td class="num">…</td></tr>
+<tr><td>Bảng 5.1. Kết quả kiểm thử các kịch bản nghiệp vụ chính</td><td class="num">…</td></tr>
+</table>
+
+<!-- ============================= DANH MUC HINH VE ============================= -->
+<h1>Danh mục hình vẽ</h1>
+<table class="formula-table">
+<tr><td>Hình 3.1. Sơ đồ quan hệ thực thể (ERD) của cơ sở dữ liệu QLKhachSan</td><td class="num">…</td></tr>
+</table>
+
+<p class="break-marker" style="page-break-before: always;">ZZBREAKMAINZZ</p>
+
+<!-- ============================= CHUONG 1 ============================= -->
+<h1>Chương 1<br/>Tổng quan về đề tài</h1>
+
+<h2>1.1. Lý do chọn đề tài</h2>
+<p>Quản lý thuê phòng khách sạn là một bài toán quản lý điển hình, hội tụ đầy đủ các đặc trưng cần có của một hệ thống thông tin: dữ liệu có cấu trúc quan hệ rõ ràng (khách hàng, phòng, dịch vụ, hóa đơn), có ràng buộc nghiệp vụ chặt chẽ (chỉ được đặt phòng còn trống), và có công thức tính toán tổng hợp từ nhiều nguồn dữ liệu (tiền phòng, tiền dịch vụ, phụ phí). Đây là đề bài phù hợp để vận dụng các kiến thức trọng tâm của môn học Lập trình Hướng sự kiện: lập trình sự kiện trên Windows Forms, thao tác với CSDL qua ADO.NET, và thiết kế Stored Procedure trên SQL Server.</p>
+
+<h2>1.2. Mục tiêu và phạm vi</h2>
+<p>Mục tiêu của đề tài là xây dựng một phần mềm desktop hoàn chỉnh cho phép nhân viên lễ tân thực hiện toàn bộ quy trình: tiếp nhận đăng ký đặt phòng, làm thủ tục nhận phòng, ghi nhận dịch vụ sử dụng hằng ngày, và lập hóa đơn thanh toán khi khách trả phòng. Phạm vi đề tài giới hạn trong nghiệp vụ được nêu tại đề bài (mục "Đề bài" ở phần đầu báo cáo), không bao gồm các nghiệp vụ mở rộng như đặt phòng qua Internet, thanh toán trực tuyến hay quản lý chuỗi nhiều khách sạn.</p>
+
+<h2>1.3. Công nghệ sử dụng</h2>
+<p>Bảng 1.1 dưới đây tổng hợp các công nghệ chính được nhóm lựa chọn sử dụng.</p>
+<table>
+<tr><th>Thành phần</th><th>Lựa chọn</th><th>Lý do</th></tr>
+<tr><td>Ngôn ngữ / nền tảng giao diện</td><td>C#, Windows Forms (.NET Framework 4.7.2)</td><td>Đề bài yêu cầu VB.NET/C#.NET; .NET Framework 4.7.2 là nền tảng tương thích tốt nhất với công cụ báo cáo Crystal Reports for Visual Studio</td></tr>
+<tr><td>Truy cập dữ liệu</td><td>ADO.NET thuần (SqlConnection/SqlCommand), không dùng ORM</td><td>Đề bài yêu cầu mọi thao tác ghi dữ liệu phải qua Stored Procedure; ADO.NET cho phép gọi Stored Procedure trực tiếp, kiểm soát rõ ràng</td></tr>
+<tr><td>Hệ quản trị CSDL</td><td>Microsoft SQL Server 2022 Express</td><td>Đề bài yêu cầu thiết kế trên SQL Server</td></tr>
+<tr><td>Công cụ báo cáo</td><td>System.Drawing.Printing (in trực tiếp); có hướng dẫn chuyển sang Crystal Report</td><td>Đề bài yêu cầu Crystal Report; nhóm đã chuẩn bị sẵn tầng dữ liệu và hướng dẫn tích hợp Crystal Report thật khi có điều kiện</td></tr>
+<tr><td>Cấu trúc project</td><td>1 solution – 1 project Windows Forms App, chia theo thư mục chức năng</td><td>Giảm chi phí ghép nối code giữa 4 thành viên trong thời gian ngắn</td></tr>
+</table>
+
+<h2>1.4. Bố cục báo cáo</h2>
+<p>Ngoài phần Lời nói đầu, Tóm tắt và các danh mục, nội dung chính của báo cáo được trình bày thành 5 chương: Chương 1 giới thiệu tổng quan đề tài; Chương 2 phân tích nghiệp vụ hệ thống; Chương 3 trình bày thiết kế cơ sở dữ liệu; Chương 4 trình bày thiết kế và xây dựng chương trình; Chương 5 trình bày kết quả kiểm thử và kết quả đạt được. Phần Kết luận tổng kết lại toàn bộ đồ án và đề xuất hướng phát triển.</p>
+
+<!-- ============================= CHUONG 2 ============================= -->
+<h1>Chương 2<br/>Phân tích nghiệp vụ hệ thống</h1>
+
+<h2>2.1. Tác nhân của hệ thống</h2>
+<p>Hệ thống có hai nhóm tác nhân chính. Thứ nhất là <span class="italic">nhân viên lễ tân</span> – người dùng trực tiếp của phần mềm, thực hiện tất cả các thao tác nghiệp vụ từ tiếp nhận đăng ký đến lập hóa đơn. Thứ hai là <span class="italic">khách hàng</span> – đối tượng liên hệ đặt phòng qua lễ tân (điện thoại hoặc trực tiếp), không đăng nhập trực tiếp vào hệ thống mà chỉ là đối tượng dữ liệu được lễ tân nhập hộ. Ngoài ra, hệ thống còn bổ sung vai trò <span class="italic">quản trị (Admin)</span> để phân quyền truy cập một số chức năng nhạy cảm như quản lý nhân viên và xem báo cáo doanh thu.</p>
+
+<h2>2.2. Danh sách chức năng</h2>
+<p>Bảng 2.1 liệt kê toàn bộ các chức năng của hệ thống, được suy ra trực tiếp từ mô tả nghiệp vụ trong đề bài.</p>
+<table>
+<tr><th>Mã</th><th>Chức năng</th><th>Ghi chú</th></tr>
+<tr><td>FR1</td><td>Quản lý khách hàng</td><td>Thêm/sửa/xóa/tìm kiếm; CMND/CCCD là khóa duy nhất</td></tr>
+<tr><td>FR2</td><td>Quản lý nhân viên</td><td>Thêm/sửa/xóa/tìm kiếm</td></tr>
+<tr><td>FR3</td><td>Quản lý loại phòng &amp; phòng</td><td>Loại phòng quyết định sức chứa và đơn giá; phòng có trạng thái Trống/Đã đặt/Đang sử dụng/Bảo trì</td></tr>
+<tr><td>FR4</td><td>Quản lý danh mục dịch vụ</td><td>Tên dịch vụ, đơn giá, đơn vị tính</td></tr>
+<tr><td>FR5</td><td>Đăng ký đặt phòng</td><td>Chỉ cho phép chọn phòng còn trống trong khoảng ngày yêu cầu (ràng buộc bắt buộc theo đề bài)</td></tr>
+<tr><td>FR6</td><td>Nhận phòng (check-in)</td><td>Cập nhật ngày nhận thực tế, chuyển trạng thái phòng/đăng ký</td></tr>
+<tr><td>FR7</td><td>Ghi nhận sử dụng dịch vụ theo ngày</td><td>Mỗi dòng: đăng ký nào, dịch vụ gì, ngày nào, số lượng bao nhiêu</td></tr>
+<tr><td>FR8</td><td>Trả phòng (check-out) &amp; lập hóa đơn</td><td>Tiền phòng + tổng tiền dịch vụ + chi phí phát sinh</td></tr>
+<tr><td>FR9</td><td>Ghi nhận chi phí phát sinh khác</td><td>Ví dụ: đền bù hỏng đồ, phí trả phòng muộn...</td></tr>
+<tr><td>FR10</td><td>Tra cứu và in hóa đơn thanh toán</td><td>—</td></tr>
+<tr><td>FR11</td><td>Báo cáo doanh thu</td><td>Theo dịch vụ, theo phòng, theo khoảng thời gian</td></tr>
+<tr><td>FR12</td><td>Đăng nhập, phân quyền Admin/Lễ tân</td><td>Bổ sung của nhóm, không bắt buộc theo đề bài</td></tr>
+</table>
+<p class="cap-table">Bảng 2.1. Danh sách chức năng của hệ thống</p>
+
+<h2>2.3. Các quy tắc nghiệp vụ quan trọng</h2>
+<p>Đây là những quy tắc được đề bài nhấn mạnh trực tiếp và là trọng tâm khi thiết kế Stored Procedure.</p>
+<h3>2.3.1. Kiểm tra phòng trống khi đăng ký</h3>
+<p>Một phòng chỉ được đăng ký nếu không tồn tại đăng ký nào khác (đang ở trạng thái "Đã đặt" hoặc "Đang ở") có khoảng ngày [Ngày nhận, Ngày trả) giao nhau với khoảng ngày khách mới yêu cầu. Điều kiện overlap được biểu diễn bằng công thức (2.1):</p>
+<table class="formula-table"><tr><td>NOT (NgayTra_moi &lt;= NgayNhan_cu OR NgayNhan_moi &gt;= NgayTra_cu)</td><td class="num">(2.1)</td></tr></table>
+
+<h3>2.3.2. Vòng đời của một đăng ký</h3>
+<p>Bảng 2.2 mô tả các trạng thái mà một phiếu đăng ký có thể trải qua trong hệ thống.</p>
+<table>
+<tr><th>Trạng thái</th><th>Mô tả</th><th>Chuyển sang</th></tr>
+<tr><td>Đã đặt (DaDat)</td><td>Vừa đăng ký, chưa tới ngày nhận phòng</td><td>Đang ở (khi nhận phòng) hoặc Đã hủy</td></tr>
+<tr><td>Đang ở (DangO)</td><td>Khách đã nhận phòng, có thể sử dụng dịch vụ</td><td>Đã trả (khi trả phòng)</td></tr>
+<tr><td>Đã trả (DaTra)</td><td>Khách đã trả phòng, hóa đơn đã lập</td><td>Trạng thái kết thúc</td></tr>
+<tr><td>Đã hủy (DaHuy)</td><td>Đăng ký bị hủy trước khi nhận phòng</td><td>Trạng thái kết thúc</td></tr>
+</table>
+<p class="cap-table">Bảng 2.2. Vòng đời trạng thái của một đăng ký</p>
+
+<h3>2.3.3. Công thức tính tiền khi trả phòng</h3>
+<p>Khi khách trả phòng, tổng tiền thanh toán được tính theo công thức (2.2):</p>
+<table class="formula-table"><tr><td>TongTien = TienPhong + TienDichVu + TienPhatSinh</td><td class="num">(2.2)</td></tr></table>
+<p>Trong đó TienPhong = SoNgayO × DonGia(loại phòng), với SoNgayO là số đêm ở tính bằng chênh lệch giữa ngày trả thực tế và ngày nhận thực tế (tối thiểu 1 ngày); TienDichVu là tổng thành tiền của toàn bộ dòng dịch vụ đã sử dụng trong bảng tblHoadonchitiet; TienPhatSinh là tổng số tiền của các khoản chi phí phát sinh khác trong bảng tblChiphiphatsinh.</p>
+
+<h2>2.4. Đề xuất bổ sung so với đề bài</h2>
+<p>Đề bài cho phép sinh viên "thêm bảng/trường nếu cần thiết". Trên cơ sở đó, nhóm bổ sung 3 bảng: <span class="italic">tblLoaiPhong</span> (chuẩn hóa sức chứa/đơn giá theo loại phòng thay vì lặp lại ở từng phòng), <span class="italic">tblHoadon</span> (lưu lại kết quả tính tiền để phục vụ tra cứu, in lại hóa đơn và báo cáo doanh thu) và <span class="italic">tblChiphiphatsinh</span> (ghi nhận các khoản phí không thuộc dịch vụ, đúng như đề bài đề cập "các chi phí phát sinh khác"). Ngoài ra nhóm bổ sung chức năng đăng nhập/phân quyền (FR12) để tăng tính hoàn thiện của sản phẩm dù đề bài không yêu cầu.</p>
+
+<!-- ============================= CHUONG 3 ============================= -->
+<h1>Chương 3<br/>Thiết kế cơ sở dữ liệu</h1>
+
+<h2>3.1. Sơ đồ quan hệ thực thể</h2>
+<p>Hình 3.1 trình bày sơ đồ quan hệ thực thể (ERD) tổng quát của cơ sở dữ liệu QLKhachSan, gồm 10 bảng.</p>
+<p class="center"><img src="file:///C:/Users/Delll/Desktop/DeThiEHOU/BTL-laptrinh-huongsukien-29082026/Done/SourceCode/BaoCao/Hinh_ERD.png" style="width:6.2in;"/></p>
+<p class="cap-fig">Hình 3.1. Sơ đồ quan hệ thực thể (ERD) của cơ sở dữ liệu QLKhachSan</p>
+
+<h2>3.2. Thiết kế chi tiết các bảng</h2>
+<p>Các bảng từ 3.1 đến 3.9 dưới đây trình bày cấu trúc chi tiết của từng bảng trong CSDL, bao gồm kiểu dữ liệu, ràng buộc và mô tả ý nghĩa của từng trường.</p>
+
+<table>
+<tr><th>Trường</th><th>Kiểu</th><th>Ràng buộc</th><th>Mô tả</th></tr>
+<tr><td>MaLoaiPhong</td><td>INT IDENTITY</td><td>PK</td><td>Mã loại phòng</td></tr>
+<tr><td>TenLoaiPhong</td><td>NVARCHAR(50)</td><td>NOT NULL, UNIQUE</td><td>Phòng Đơn / Phòng Đôi / Phòng VIP...</td></tr>
+<tr><td>SucChua</td><td>INT</td><td>NOT NULL, CHECK &gt; 0</td><td>Số người tối đa</td></tr>
+<tr><td>DonGia</td><td>DECIMAL(18,2)</td><td>NOT NULL, CHECK &gt; 0</td><td>Đơn giá / đêm</td></tr>
+<tr><td>MoTa</td><td>NVARCHAR(255)</td><td>NULL</td><td>Mô tả thêm</td></tr>
+</table>
+<p class="cap-table">Bảng 3.1. Cấu trúc bảng tblLoaiPhong (bảng bổ sung)</p>
+
+<table>
+<tr><th>Trường</th><th>Kiểu</th><th>Ràng buộc</th><th>Mô tả</th></tr>
+<tr><td>MaPhong</td><td>INT IDENTITY</td><td>PK</td><td>Mã phòng</td></tr>
+<tr><td>SoPhong</td><td>VARCHAR(10)</td><td>NOT NULL, UNIQUE</td><td>Số phòng hiển thị, VD "101"</td></tr>
+<tr><td>MaLoaiPhong</td><td>INT</td><td>NOT NULL, FK → tblLoaiPhong</td><td>Loại phòng</td></tr>
+<tr><td>Tang</td><td>INT</td><td>NULL</td><td>Tầng</td></tr>
+<tr><td>TrangThai</td><td>VARCHAR(20)</td><td>NOT NULL, DEFAULT 'Trong', CHECK IN (Trong, DaDat, DangSD, BaoTri)</td><td>Trạng thái hiện tại (chỉ mang tính tham khảo hiển thị)</td></tr>
+<tr><td>GhiChu</td><td>NVARCHAR(255)</td><td>NULL</td><td>—</td></tr>
+</table>
+<p class="cap-table">Bảng 3.2. Cấu trúc bảng tblPhong</p>
+
+<table>
+<tr><th>Trường</th><th>Kiểu</th><th>Ràng buộc</th><th>Mô tả</th></tr>
+<tr><td>MaKH</td><td>INT IDENTITY</td><td>PK</td><td>—</td></tr>
+<tr><td>CMND</td><td>VARCHAR(12)</td><td>NOT NULL, UNIQUE, chỉ chứa số</td><td>Số CMND/CCCD</td></tr>
+<tr><td>HoTen</td><td>NVARCHAR(100)</td><td>NOT NULL</td><td>—</td></tr>
+<tr><td>NgaySinh</td><td>DATE</td><td>NOT NULL</td><td>—</td></tr>
+<tr><td>GioiTinh</td><td>BIT</td><td>NOT NULL, DEFAULT 1</td><td>1 = Nam, 0 = Nữ</td></tr>
+<tr><td>SoDienThoai</td><td>VARCHAR(15)</td><td>NOT NULL, chỉ chứa số</td><td>—</td></tr>
+<tr><td>Email, DiaChi</td><td>VARCHAR/NVARCHAR</td><td>NULL</td><td>—</td></tr>
+<tr><td>QuocTich</td><td>NVARCHAR(50)</td><td>NOT NULL, DEFAULT 'Việt Nam'</td><td>—</td></tr>
+<tr><td>NgayTao</td><td>DATETIME</td><td>NOT NULL, DEFAULT GETDATE()</td><td>Ngày tạo hồ sơ khách</td></tr>
+</table>
+<p class="cap-table">Bảng 3.3. Cấu trúc bảng tblKhach</p>
+
+<table>
+<tr><th>Trường</th><th>Kiểu</th><th>Ràng buộc</th><th>Mô tả</th></tr>
+<tr><td>MaNV</td><td>INT IDENTITY</td><td>PK</td><td>—</td></tr>
+<tr><td>HoTen, NgaySinh, GioiTinh, CMND, SoDienThoai, DiaChi</td><td>—</td><td>tương tự tblKhach</td><td>—</td></tr>
+<tr><td>ChucVu</td><td>NVARCHAR(50)</td><td>NOT NULL, DEFAULT 'Lễ tân'</td><td>—</td></tr>
+<tr><td>NgayVaoLam</td><td>DATE</td><td>NOT NULL</td><td>—</td></tr>
+<tr><td>TrangThai</td><td>BIT</td><td>NOT NULL, DEFAULT 1</td><td>1 = đang làm việc</td></tr>
+</table>
+<p class="cap-table">Bảng 3.4. Cấu trúc bảng tblNhanvien</p>
+
+<table>
+<tr><th>Trường</th><th>Kiểu</th><th>Ràng buộc</th><th>Mô tả</th></tr>
+<tr><td>MaDichvu</td><td>INT IDENTITY</td><td>PK</td><td>—</td></tr>
+<tr><td>TenDichvu</td><td>NVARCHAR(100)</td><td>NOT NULL, UNIQUE</td><td>—</td></tr>
+<tr><td>DonGia</td><td>DECIMAL(18,2)</td><td>NOT NULL, CHECK &gt; 0</td><td>—</td></tr>
+<tr><td>DonViTinh</td><td>NVARCHAR(20)</td><td>NULL</td><td>lượt / suất / giờ...</td></tr>
+<tr><td>TrangThai</td><td>BIT</td><td>NOT NULL, DEFAULT 1</td><td>1 = còn kinh doanh</td></tr>
+</table>
+<p class="cap-table">Bảng 3.5. Cấu trúc bảng tblDichvu</p>
+
+<table>
+<tr><th>Trường</th><th>Kiểu</th><th>Ràng buộc</th><th>Mô tả</th></tr>
+<tr><td>MaDangky</td><td>INT IDENTITY</td><td>PK</td><td>—</td></tr>
+<tr><td>MaKH</td><td>INT</td><td>NOT NULL, FK → tblKhach</td><td>Khách đặt phòng</td></tr>
+<tr><td>MaPhong</td><td>INT</td><td>NOT NULL, FK → tblPhong</td><td>Phòng được đặt</td></tr>
+<tr><td>MaNVLap</td><td>INT</td><td>NOT NULL, FK → tblNhanvien</td><td>Nhân viên nhận đăng ký</td></tr>
+<tr><td>NgayDangKy</td><td>DATETIME</td><td>NOT NULL, DEFAULT GETDATE()</td><td>—</td></tr>
+<tr><td>NgayNhanDuKien, NgayTraDuKien</td><td>DATE</td><td>NOT NULL, CHECK NgayTra &gt; NgayNhan</td><td>—</td></tr>
+<tr><td>NgayNhanThucTe, NgayTraThucTe</td><td>DATETIME</td><td>NULL</td><td>Set khi check-in / check-out</td></tr>
+<tr><td>SoKhach</td><td>INT</td><td>NOT NULL, DEFAULT 1, CHECK &gt; 0</td><td>—</td></tr>
+<tr><td>TrangThai</td><td>VARCHAR(20)</td><td>NOT NULL, DEFAULT 'DaDat', CHECK IN (DaDat, DangO, DaTra, DaHuy)</td><td>—</td></tr>
+</table>
+<p class="cap-table">Bảng 3.6. Cấu trúc bảng tblDangky</p>
+
+<table>
+<tr><th>Trường</th><th>Kiểu</th><th>Ràng buộc</th><th>Mô tả</th></tr>
+<tr><td>MaChiTiet</td><td>INT IDENTITY</td><td>PK</td><td>—</td></tr>
+<tr><td>MaDangky</td><td>INT</td><td>NOT NULL, FK → tblDangky (CASCADE)</td><td>—</td></tr>
+<tr><td>MaDichvu</td><td>INT</td><td>NOT NULL, FK → tblDichvu</td><td>—</td></tr>
+<tr><td>NgaySuDung</td><td>DATE</td><td>NOT NULL</td><td>—</td></tr>
+<tr><td>SoLuong</td><td>INT</td><td>NOT NULL, DEFAULT 1, CHECK &gt; 0</td><td>—</td></tr>
+<tr><td>DonGia</td><td>DECIMAL(18,2)</td><td>NOT NULL</td><td>Snapshot giá dịch vụ tại thời điểm dùng</td></tr>
+<tr><td>ThanhTien</td><td>Computed (SoLuong × DonGia)</td><td>PERSISTED</td><td>—</td></tr>
+</table>
+<p class="cap-table">Bảng 3.7. Cấu trúc bảng tblHoadonchitiet</p>
+
+<table>
+<tr><th>Trường</th><th>Kiểu</th><th>Ràng buộc</th><th>Mô tả</th></tr>
+<tr><td>MaPhatSinh</td><td>INT IDENTITY</td><td>PK</td><td>—</td></tr>
+<tr><td>MaDangky</td><td>INT</td><td>NOT NULL, FK → tblDangky (CASCADE)</td><td>—</td></tr>
+<tr><td>LoaiPhi</td><td>NVARCHAR(100)</td><td>NOT NULL</td><td>VD: "Đền bù hỏng đồ"</td></tr>
+<tr><td>SoTien</td><td>DECIMAL(18,2)</td><td>NOT NULL, CHECK &gt;= 0</td><td>—</td></tr>
+<tr><td>NgayPhatSinh</td><td>DATE</td><td>NOT NULL</td><td>—</td></tr>
+</table>
+<p class="cap-table">Bảng 3.8. Cấu trúc bảng tblChiphiphatsinh (bảng bổ sung)</p>
+
+<table>
+<tr><th>Trường</th><th>Kiểu</th><th>Ràng buộc</th><th>Mô tả</th></tr>
+<tr><td>MaHoadon</td><td>INT IDENTITY</td><td>PK</td><td>—</td></tr>
+<tr><td>MaDangky</td><td>INT</td><td>NOT NULL, UNIQUE, FK → tblDangky</td><td>Quan hệ 1–1 với đăng ký</td></tr>
+<tr><td>MaNVLap</td><td>INT</td><td>NOT NULL, FK → tblNhanvien</td><td>Nhân viên lập hóa đơn</td></tr>
+<tr><td>NgayLapHoadon</td><td>DATETIME</td><td>NOT NULL, DEFAULT GETDATE()</td><td>—</td></tr>
+<tr><td>SoNgayO</td><td>INT</td><td>NOT NULL, CHECK &gt; 0</td><td>—</td></tr>
+<tr><td>TienPhong, TienDichVu, TienPhatSinh</td><td>DECIMAL(18,2)</td><td>NOT NULL</td><td>—</td></tr>
+<tr><td>TongTien</td><td>Computed</td><td>PERSISTED</td><td>= TienPhong+TienDichVu+TienPhatSinh</td></tr>
+<tr><td>HinhThucThanhToan</td><td>VARCHAR(20)</td><td>DEFAULT 'TienMat', CHECK IN (TienMat, ChuyenKhoan, The)</td><td>—</td></tr>
+</table>
+<p class="cap-table">Bảng 3.9. Cấu trúc bảng tblHoadon (bảng bổ sung)</p>
+
+<h2>3.3. Ràng buộc khóa ngoại</h2>
+<p>Các bảng chi tiết (tblHoadonchitiet, tblChiphiphatsinh, tblHoadon) sử dụng ràng buộc <span class="italic">ON DELETE CASCADE</span> đối với khóa ngoại trỏ về tblDangky, vì các dữ liệu này phụ thuộc hoàn toàn vào vòng đời của đăng ký. Các bảng còn lại sử dụng <span class="italic">NO ACTION</span> để giữ lại lịch sử, không cho phép xóa khách hàng/phòng/nhân viên đã từng phát sinh giao dịch.</p>
+
+<h2>3.4. Danh sách Stored Procedure</h2>
+<p>Toàn bộ 42 Stored Procedure được tổ chức theo từng bảng dữ liệu, đảm nhiệm các thao tác thêm/sửa/xóa/tìm kiếm theo đúng yêu cầu đề bài. Bảng 3.10 liệt kê một số Stored Procedure nghiệp vụ tiêu biểu; danh sách đầy đủ được trình bày tại Phụ lục B.</p>
+<table>
+<tr><th>Tên Stored Procedure</th><th>Chức năng</th></tr>
+<tr><td>sp_Phong_DanhSachTrong</td><td>Trả về danh sách phòng còn trống trong khoảng ngày yêu cầu (nguồn xác thực duy nhất cho nghiệp vụ "phòng trống")</td></tr>
+<tr><td>sp_Dangky_Them</td><td>Tạo đăng ký mới; tự kiểm tra overlap ngày trước khi ghi, báo lỗi nếu phòng đã có người đặt trùng ngày</td></tr>
+<tr><td>sp_Dangky_NhanPhong</td><td>Check-in: chuyển trạng thái đăng ký/phòng, ghi nhận ngày nhận thực tế</td></tr>
+<tr><td>sp_Dangky_TraPhong_LapHoaDon</td><td>Check-out: tính số đêm ở, tiền phòng, tiền dịch vụ, tiền phát sinh và lập hóa đơn</td></tr>
+<tr><td>sp_HoaDonChiTiet_Them</td><td>Ghi nhận sử dụng dịch vụ theo ngày, tự snapshot đơn giá dịch vụ hiện hành</td></tr>
+<tr><td>sp_BaoCao_DoanhThuDichVu / sp_BaoCao_DoanhThuPhong / sp_BaoCao_TongHop</td><td>Truy vấn dữ liệu phục vụ báo cáo doanh thu</td></tr>
+</table>
+<p class="cap-table">Bảng 3.10. Danh sách Stored Procedure chính</p>
+
+<h2>3.5. Dữ liệu mẫu</h2>
+<p>Nhóm đã xây dựng bộ dữ liệu mẫu bao phủ đầy đủ các trạng thái vòng đời của một đăng ký để phục vụ kiểm thử: một đăng ký đã trả phòng (có đầy đủ dịch vụ, chi phí phát sinh và hóa đơn hoàn chỉnh), một đăng ký đang trong thời gian lưu trú (đã có một số dòng dịch vụ nhưng chưa lập hóa đơn), và một đăng ký mới được đặt cho tương lai (dùng để kiểm tra ràng buộc không được đặt trùng phòng).</p>
+
+<!-- ============================= CHUONG 4 ============================= -->
+<h1>Chương 4<br/>Thiết kế và xây dựng chương trình</h1>
+
+<h2>4.1. Kiến trúc phần mềm</h2>
+<p>Chương trình được tổ chức theo kiến trúc phân tầng gồm 5 tầng: <span class="italic">Common</span> (lớp kết nối CSDL dùng chung, hằng số trạng thái, hàm kiểm tra dữ liệu, xử lý phím tắt), <span class="italic">Entities</span> (các lớp POCO ánh xạ 1-1 với bảng dữ liệu), <span class="italic">DataAccess</span> (mỗi bảng một lớp DAL, gọi trực tiếp Stored Procedure tương ứng), <span class="italic">Forms</span> (giao diện người dùng, tổ chức theo module nghiệp vụ) và <span class="italic">Reports</span> (chức năng in ấn/báo cáo). Việc phân tầng giúp tách biệt rõ ràng giữa logic truy cập dữ liệu và logic giao diện, đồng thời giúp 4 thành viên trong nhóm có thể phát triển song song các module giao diện khác nhau mà không xung đột code, miễn là tuân thủ đúng quy ước đặt tên đã thống nhất từ đầu.</p>
+
+<h2>4.2. Cấu trúc project và các module</h2>
+<p>Ứng dụng gồm 1 form chính (MainForm) đóng vai trò MDI Container, điều hướng toàn bộ chức năng qua hệ thống MenuStrip và ToolStrip theo đúng yêu cầu đề bài. Mỗi lần người dùng chọn một chức năng, form tương ứng được mở làm cửa sổ con (MDI child); chương trình đảm bảo tại một thời điểm chỉ hiển thị duy nhất một form nghiệp vụ để tránh chồng chéo giao diện. Danh sách các module chính gồm: Danh mục (Loại phòng, Phòng, Dịch vụ, Khách hàng, Nhân viên), Nghiệp vụ (Đặt phòng/Nhận phòng, Sử dụng dịch vụ, Trả phòng/Thanh toán), Hóa đơn (Tra cứu/In lại hóa đơn) và Báo cáo (Doanh thu).</p>
+
+<h2>4.3. Quy ước lập trình</h2>
+<p>Để đảm bảo 4 thành viên có thể ghép nối code thuận lợi, nhóm thống nhất một số quy ước: tên form có tiền tố "frm", tên lớp truy cập dữ liệu có hậu tố "DAL"; tên thuộc tính trong lớp Entity trùng chính xác với tên cột CSDL; tên tham số của SqlParameter trùng với tên cột (có thêm tiền tố @) để giảm nhầm lẫn khi ánh xạ tham số cho Stored Procedure; và quan trọng nhất, mọi thao tác ghi dữ liệu bắt buộc phải gọi Stored Procedure, không được nối chuỗi SQL trực tiếp trong code C#, vừa đúng yêu cầu đề bài vừa tránh nguy cơ SQL Injection.</p>
+
+<h2>4.4. Thiết kế giao diện và chuẩn thao tác bàn phím</h2>
+<p>Theo yêu cầu đề bài về việc hạn chế thao tác chuột, mọi form quản lý danh mục trong hệ thống đều áp dụng thống nhất bộ phím tắt tại Bảng 4.1.</p>
+<table>
+<tr><th>Phím</th><th>Hành động</th></tr>
+<tr><td>Enter</td><td>Di chuyển sang control kế tiếp trong form</td></tr>
+<tr><td>F2</td><td>Thêm mới</td></tr>
+<tr><td>F3</td><td>Sửa</td></tr>
+<tr><td>Delete</td><td>Xóa (có xác nhận)</td></tr>
+<tr><td>F5</td><td>Làm mới danh sách</td></tr>
+<tr><td>Esc</td><td>Hủy thao tác đang nhập</td></tr>
+<tr><td>Ctrl+F</td><td>Focus vào ô tìm kiếm</td></tr>
+</table>
+<p class="cap-table">Bảng 4.1. Chuẩn phím tắt áp dụng cho các form</p>
+<p>Mỗi form danh mục gồm một lưới dữ liệu (DataGridView) để hiển thị/chọn bản ghi và một khu vực nhập liệu bên dưới; khi ở chế độ thêm/sửa, lưới dữ liệu bị khóa để tránh thao tác nhầm, và ngược lại. Dữ liệu đầu vào được kiểm tra chặt chẽ ở tầng giao diện (ví dụ CMND/CCCD phải đủ 9 hoặc 12 chữ số, số điện thoại chỉ chứa chữ số, ngày trả phải sau ngày nhận) trước khi gọi Stored Procedure, đồng thời CSDL vẫn giữ các ràng buộc CHECK làm lớp bảo vệ cuối cùng.</p>
+
+<h2>4.5. Chức năng đăng nhập và phân quyền</h2>
+<p>Mặc dù không bắt buộc theo đề bài, nhóm bổ sung chức năng đăng nhập dựa trên bảng tblTaikhoan nhằm tăng tính hoàn thiện cho sản phẩm. Mật khẩu được băm bằng thuật toán SHA-256 ngay trong Stored Procedure trước khi so khớp, không lưu trữ dưới dạng văn bản thuần. Sau khi đăng nhập, tài khoản có quyền "Lễ tân" sẽ bị hạn chế truy cập hai chức năng nhạy cảm là Quản lý nhân viên và Báo cáo doanh thu, chỉ tài khoản quyền "Admin" mới sử dụng được; đồng thời hệ thống tự động chọn sẵn nhân viên đang đăng nhập vào ô "Nhân viên lập" tại các form Đặt phòng và Trả phòng, giảm bớt thao tác thủ công.</p>
+
+<h2>4.6. Chức năng in ấn và báo cáo</h2>
+<p>Đề bài yêu cầu báo cáo được viết trên Crystal Report. Do Crystal Report Designer là công cụ thiết kế trực quan tích hợp trong Visual Studio (không thể tạo file .rpt chỉ bằng mã nguồn), nhóm đã xây dựng sẵn toàn bộ tầng dữ liệu phục vụ báo cáo (hóa đơn thanh toán, báo cáo doanh thu) và triển khai bản in bằng thư viện System.Drawing.Printing để đảm bảo chức năng in hoạt động ngay cả khi máy tính không cài Crystal Report. Nhóm đã chuẩn bị hướng dẫn chi tiết từng bước để thay thế bằng Crystal Report thật khi có điều kiện triển khai trên máy đã cài đặt công cụ này.</p>
+
+<!-- ============================= CHUONG 5 ============================= -->
+<h1>Chương 5<br/>Kiểm thử và kết quả đạt được</h1>
+
+<h2>5.1. Kiểm thử tầng cơ sở dữ liệu</h2>
+<p>Toàn bộ Stored Procedure được kiểm thử trực tiếp trên SQL Server bằng công cụ sqlcmd, sử dụng giao dịch (transaction) có rollback để không làm thay đổi dữ liệu mẫu gốc. Bảng 5.1 tổng hợp một số kịch bản kiểm thử tiêu biểu.</p>
+<table>
+<tr><th>Kịch bản kiểm thử</th><th>Kết quả mong đợi</th><th>Kết quả thực tế</th></tr>
+<tr><td>Đặt phòng cho khoảng ngày đã có người đặt trùng</td><td>Bị từ chối, báo lỗi rõ ràng</td><td>Đạt</td></tr>
+<tr><td>Đặt phòng hợp lệ cho phòng đang trống</td><td>Tạo đăng ký thành công</td><td>Đạt</td></tr>
+<tr><td>Trả phòng và lập hóa đơn</td><td>Tính đúng số đêm ở, tiền phòng, tiền dịch vụ, tổng tiền</td><td>Đạt (kết quả tính tay và kết quả hệ thống khớp nhau)</td></tr>
+<tr><td>Đổi mật khẩu với mật khẩu cũ sai</td><td>Bị từ chối</td><td>Đạt</td></tr>
+<tr><td>Thêm/sửa/xóa dữ liệu danh mục (khách hàng, nhân viên, phòng, loại phòng, dịch vụ)</td><td>Thực hiện đúng, không phát sinh lỗi</td><td>Đạt</td></tr>
+</table>
+<p class="cap-table">Bảng 5.1. Kết quả kiểm thử các kịch bản nghiệp vụ chính</p>
+<p>Trong quá trình kiểm thử, nhóm phát hiện và khắc phục một lỗi liên quan đến thiết lập <span class="italic">QUOTED_IDENTIFIER</span> khi tạo các Stored Procedure ghi dữ liệu vào bảng có cột tính toán (computed column) — đây là yêu cầu bắt buộc của SQL Server đối với bảng có cột PERSISTED, và đã được khắc phục bằng cách bổ sung câu lệnh SET tương ứng ngay đầu file script tạo Stored Procedure.</p>
+
+<h2>5.2. Kiểm thử ứng dụng</h2>
+<p>Chương trình được build thành công ở cả hai cấu hình Debug và Release, không phát sinh lỗi hoặc cảnh báo biên dịch. Nhóm đã chạy thử thủ công toàn bộ các luồng nghiệp vụ chính trên giao diện: đăng nhập, quản lý danh mục, đặt phòng, nhận phòng, ghi nhận dịch vụ, trả phòng và lập hóa đơn, tra cứu hóa đơn, xem báo cáo doanh thu.</p>
+
+<h2>5.3. Kết quả đạt được</h2>
+<p>Nhóm đã hoàn thành đầy đủ các yêu cầu bắt buộc của đề bài: thiết kế CSDL trên SQL Server với đầy đủ ràng buộc và quan hệ; toàn bộ thao tác cập nhật dữ liệu được thực hiện qua Stored Procedure; phần mềm viết trên C#.NET, giao tiếp qua menu/toolbar, hỗ trợ thao tác bàn phím, kiểm tra dữ liệu chặt chẽ. Ngoài ra nhóm còn bổ sung một số tính năng không bắt buộc để tăng tính hoàn thiện: chức năng đăng nhập/phân quyền, và các script tiện ích hỗ trợ build/reset dữ liệu.</p>
+
+<h2>5.4. Hạn chế</h2>
+<p>Do giới hạn về thời gian và điều kiện triển khai, báo cáo Crystal Report thật (theo đúng công nghệ đề bài yêu cầu) chưa được tích hợp trực tiếp vào sản phẩm nộp, mà thay bằng giải pháp in ấn tương đương sử dụng System.Drawing.Printing kèm hướng dẫn tích hợp Crystal Report chi tiết. Đây là hạn chế nhóm nhận thức rõ và đã chuẩn bị đầy đủ để khắc phục khi có điều kiện.</p>
+
+<!-- ============================= KET LUAN ============================= -->
+<h1>Kết luận</h1>
+<p>Qua quá trình thực hiện Bài tập lớn, nhóm đã xây dựng hoàn chỉnh phần mềm "Quản lý thuê phòng khách sạn" đáp ứng đầy đủ các yêu cầu nghiệp vụ và kỹ thuật mà đề bài đặt ra, đồng thời rèn luyện được kỹ năng phân tích thiết kế CSDL quan hệ, viết Stored Procedure xử lý nghiệp vụ, và xây dựng ứng dụng Windows Forms giao tiếp với CSDL qua ADO.NET. Quá trình làm việc nhóm với 4 thành viên cũng giúp nhóm rèn luyện kỹ năng thống nhất quy ước code, phân chia công việc và tích hợp sản phẩm từ nhiều module độc lập.</p>
+<p>Hướng phát triển tiếp theo của đề tài có thể bao gồm: tích hợp Crystal Report thật thay cho giải pháp in tạm thời; hoàn thiện chức năng đăng nhập/phân quyền với nhiều vai trò chi tiết hơn; bổ sung chức năng đặt phòng từ xa qua giao diện web; và xây dựng thêm các báo cáo phân tích doanh thu nâng cao theo nhiều tiêu chí.</p>
+
+<!-- ============================= TAI LIEU THAM KHAO ============================= -->
+<h1>Tài liệu tham khảo</h1>
+<p>[1] Graffox D. IEEE Citation Reference. [Online]. http://www.ieee.org/documents/ieeecitationref.pdf</p>
+<p>[2] Microsoft. "ADO.NET Overview". Microsoft Learn. [Online]. https://learn.microsoft.com/en-us/dotnet/framework/data/adonet/ado-net-overview</p>
+<p>[3] Microsoft. "SQL Server Stored Procedures". Microsoft Learn. [Online]. https://learn.microsoft.com/en-us/sql/relational-databases/stored-procedures/stored-procedures-database-engine</p>
+<p>[4] Microsoft. "Windows Forms overview". Microsoft Learn. [Online]. https://learn.microsoft.com/en-us/dotnet/desktop/winforms/overview</p>
+
+<p class="break-marker" style="page-break-before: always;">ZZBREAKAPPENDIXZZ</p>
+
+<!-- ============================= PHU LUC ============================= -->
+<h1>Phụ lục</h1>
+
+<h2>A. Trích đoạn script tạo bảng cơ sở dữ liệu</h2>
+<p>Toàn văn script tạo CSDL nằm tại file <span class="italic">sql/01_TaoDatabase_Bang.sql</span> trong bộ mã nguồn nộp kèm. Dưới đây là trích đoạn minh họa cho bảng tblDangky:</p>
+<pre style="font-family:Consolas,monospace; font-size:10pt; background:#f5f5f5; border:1px solid #ccc; padding:8px; white-space:pre-wrap;">
+CREATE TABLE tblDangky
+(
+    MaDangky        INT IDENTITY(1,1)      NOT NULL,
+    MaKH            INT                    NOT NULL,
+    MaPhong         INT                    NOT NULL,
+    MaNVLap         INT                    NOT NULL,
+    NgayDangKy      DATETIME               NOT NULL CONSTRAINT DF_tblDangky_NgayDangKy DEFAULT (GETDATE()),
+    NgayNhanDuKien  DATE                   NOT NULL,
+    NgayTraDuKien   DATE                   NOT NULL,
+    NgayNhanThucTe  DATETIME               NULL,
+    NgayTraThucTe   DATETIME               NULL,
+    SoKhach         INT                    NOT NULL CONSTRAINT DF_tblDangky_SoKhach DEFAULT (1),
+    TrangThai       VARCHAR(20)            NOT NULL CONSTRAINT DF_tblDangky_TrangThai DEFAULT ('DaDat'),
+    GhiChu          NVARCHAR(255)          NULL,
+    CONSTRAINT PK_tblDangky PRIMARY KEY (MaDangky),
+    CONSTRAINT FK_tblDangky_tblKhach FOREIGN KEY (MaKH) REFERENCES tblKhach (MaKH),
+    CONSTRAINT FK_tblDangky_tblPhong FOREIGN KEY (MaPhong) REFERENCES tblPhong (MaPhong),
+    CONSTRAINT FK_tblDangky_tblNhanvien FOREIGN KEY (MaNVLap) REFERENCES tblNhanvien (MaNV),
+    CONSTRAINT CK_tblDangky_NgayTra CHECK (NgayTraDuKien > NgayNhanDuKien),
+    CONSTRAINT CK_tblDangky_TrangThai CHECK (TrangThai IN ('DaDat','DangO','DaTra','DaHuy'))
+);
+</pre>
+
+<h2>B. Trích đoạn Stored Procedure nghiệp vụ trọng tâm</h2>
+<p>Toàn văn 42 Stored Procedure nằm tại file <span class="italic">sql/03_StoredProcedures.sql</span>. Dưới đây là Stored Procedure xử lý trả phòng và lập hóa đơn – nghiệp vụ trọng tâm của đề tài:</p>
+<pre style="font-family:Consolas,monospace; font-size:10pt; background:#f5f5f5; border:1px solid #ccc; padding:8px; white-space:pre-wrap;">
+CREATE OR ALTER PROCEDURE sp_Dangky_TraPhong_LapHoaDon
+    @MaDangky INT, @MaNVLap INT, @NgayTraThucTe DATETIME = NULL,
+    @HinhThucThanhToan VARCHAR(20) = 'TienMat', @MaHoadon INT OUTPUT
+AS
+BEGIN
+    SET NOCOUNT ON;
+    DECLARE @MaPhong INT, @NgayNhanThucTe DATETIME, @DonGiaPhong DECIMAL(18,2),
+            @SoNgayO INT, @TienPhong DECIMAL(18,2), @TienDichVu DECIMAL(18,2),
+            @TienPhatSinh DECIMAL(18,2), @NgayTra DATETIME;
+
+    SELECT @MaPhong = d.MaPhong, @NgayNhanThucTe = d.NgayNhanThucTe, @DonGiaPhong = lp.DonGia
+      FROM tblDangky d
+      JOIN tblPhong p ON p.MaPhong = d.MaPhong
+      JOIN tblLoaiPhong lp ON lp.MaLoaiPhong = p.MaLoaiPhong
+     WHERE d.MaDangky = @MaDangky AND d.TrangThai = 'DangO';
+
+    IF @MaPhong IS NULL
+        THROW 51060, N'Chỉ có thể trả phòng cho đăng ký đang ở trạng thái Đang ở.', 1;
+
+    SET @NgayTra = ISNULL(@NgayTraThucTe, GETDATE());
+    SET @SoNgayO = DATEDIFF(DAY, @NgayNhanThucTe, @NgayTra);
+    IF @SoNgayO &lt; 1 SET @SoNgayO = 1;
+    SET @TienPhong = @SoNgayO * @DonGiaPhong;
+
+    SELECT @TienDichVu = ISNULL(SUM(ThanhTien), 0) FROM tblHoadonchitiet WHERE MaDangky = @MaDangky;
+    SELECT @TienPhatSinh = ISNULL(SUM(SoTien), 0) FROM tblChiphiphatsinh WHERE MaDangky = @MaDangky;
+
+    UPDATE tblDangky SET TrangThai = 'DaTra', NgayTraThucTe = @NgayTra WHERE MaDangky = @MaDangky;
+    UPDATE tblPhong SET TrangThai = 'Trong' WHERE MaPhong = @MaPhong;
+
+    INSERT INTO tblHoadon (MaDangky, MaNVLap, NgayLapHoadon, SoNgayO, TienPhong, TienDichVu,
+                            TienPhatSinh, HinhThucThanhToan, TrangThaiThanhToan)
+    VALUES (@MaDangky, @MaNVLap, @NgayTra, @SoNgayO, @TienPhong, @TienDichVu,
+            @TienPhatSinh, @HinhThucThanhToan, 1);
+
+    SET @MaHoadon = CAST(SCOPE_IDENTITY() AS INT);
+END
+</pre>
+
+<h2>C. Hướng dẫn cài đặt và chạy chương trình</h2>
+<ol>
+<li>Cài đặt SQL Server 2022 Express, SQL Server Management Studio và Visual Studio 2022 (Workload ".NET desktop development") theo tài liệu hướng dẫn cài đặt kèm theo bộ nộp.</li>
+<li>Chạy lần lượt 3 file trong thư mục <span class="italic">sql/</span> bằng SSMS hoặc sqlcmd: <span class="italic">01_TaoDatabase_Bang.sql</span> (tạo CSDL và bảng), <span class="italic">02_DuLieuMau.sql</span> (chèn dữ liệu mẫu), <span class="italic">03_StoredProcedures.sql</span> (tạo Stored Procedure).</li>
+<li>Mở file <span class="italic">QLKhachSan.sln</span> bằng Visual Studio 2022, kiểm tra chuỗi kết nối trong <span class="italic">App.config</span> khớp với tên Instance SQL Server của máy đang chạy.</li>
+<li>Nhấn F5 để build và chạy chương trình; hoặc chạy file <span class="italic">build.bat</span> để build phiên bản Release, chương trình được xuất ra thư mục <span class="italic">publish/</span>.</li>
+<li>Đăng nhập bằng một trong các tài khoản mẫu (VD: <span class="italic">admin</span> / mật khẩu <span class="italic">123456</span>) để sử dụng chương trình.</li>
+</ol>
+
+</body>
+</html>
