@@ -4,8 +4,10 @@
 > [`../QLKhachSan/`](../QLKhachSan/)). Giữ nguyên tài liệu này làm hồ sơ kiến trúc cho quyển báo cáo BTL.
 > Sai khác duy nhất so với kế hoạch ban đầu: dùng **.NET Framework 4.7.2** (không phải .NET 8) vì đây
 > là target mặc định khi tạo project Windows Forms App có tích hợp Crystal Reports trong Visual Studio
-> 2022, và phần báo cáo dùng `System.Drawing.Printing` làm phương án chạy-được-ngay thay vì Crystal
-> Report thật (xem [04-HuongDan-TichHop-CrystalReport.md](./04-HuongDan-TichHop-CrystalReport.md)).
+> 2022. Báo cáo (hóa đơn, doanh thu) đã tích hợp **Crystal Report thật** (`rptHoaDon.rpt`,
+> `rptDoanhThu.rpt`, hiển thị qua `CrystalReportViewer`) — xem
+> [04-HuongDan-TichHop-CrystalReport.md](./04-HuongDan-TichHop-CrystalReport.md); `System.Drawing.Printing`
+> chỉ còn là cơ chế dự phòng tự động khi máy chạy thiếu Crystal Reports Runtime.
 
 ## 1. Lựa chọn công nghệ
 
@@ -13,7 +15,7 @@
 |---|---|---|
 | Ngôn ngữ / UI | C#, Windows Forms App (**.NET Framework 4.7.2**) | Đề bài yêu cầu VB.NET/C#.NET + menu/toolbar; nhóm chọn C#; 4.7.2 là target mặc định tương thích Crystal Reports for VS |
 | Truy cập dữ liệu | ADO.NET thuần (`SqlConnection`/`SqlCommand`), **không dùng Entity Framework** | Đề bài yêu cầu thao tác ghi phải qua Stored Procedure — ADO.NET gọi SP trực tiếp, kiểm soát rõ ràng, đúng tinh thần đề bài |
-| Báo cáo | `System.Drawing.Printing` (chạy ngay, không cần cài thêm gì) + hướng dẫn thay bằng Crystal Reports thật khi cần | Đề bài yêu cầu Crystal Report (3.2); Crystal Report Designer là công cụ GUI trong VS, xem hướng dẫn tích hợp tại tài liệu 04 |
+| Báo cáo | SAP Crystal Reports for Visual Studio (`CrystalReportViewer`) + `System.Drawing.Printing` làm phương án dự phòng tự động | Đề bài yêu cầu bắt buộc Crystal Report (3.2); xem chi tiết thiết kế report tại tài liệu 04 |
 | Cấu trúc project | 1 solution — 1 project Windows Forms App duy nhất, chia theo **folder** (không tách nhiều class library) | 4 người, 10 ngày — tách nhiều project làm tăng chi phí ghép nối; 1 project + quy ước thư mục rõ ràng dễ merge tay hơn |
 
 ## 2. Cấu trúc thư mục project
@@ -57,7 +59,11 @@ QLKhachSan/
    │  ├─ HoaDon/frmTraCuuHoaDon.cs   // tra cứu / in lại hóa đơn đã lập
    │  └─ BaoCao/frmBaoCaoDoanhThu.cs
    ├─ Reports/
-   │  ├─ InvoicePrintDocument.cs     // in hóa đơn qua System.Drawing.Printing (chạy ngay, không cần Crystal Report)
+   │  ├─ CrystalInvoiceViewer.cs     // xem hóa đơn bằng Crystal Report thật (rptHoaDon.rpt)
+   │  ├─ CrystalRevenueViewer.cs     // xem báo cáo doanh thu bằng Crystal Report thật (rptDoanhThu.rpt)
+   │  ├─ CrystalReportLoader.cs      // tìm report class đã build bằng reflection
+   │  ├─ CrystalData/dsHoaDon.cs, dsDoanhThu.cs  // DataSet nguồn cho 2 report trên
+   │  ├─ InvoicePrintDocument.cs     // dự phòng: in qua System.Drawing.Printing nếu thiếu Crystal Reports Runtime
    │  └─ RevenueReportPrintDocument.cs
    └─ App.config                    // connection string
 ```
@@ -112,9 +118,9 @@ Gợi ý triển khai: viết 1 class `BaseForm` hoặc `KeyboardHelper` dùng c
 | GĐ2 | 07/09–08/09 | Chốt thiết kế CSDL (tài liệu 02 này) | ✅ Xong — đã tạo bảng + test trên SQL Server thật |
 | GĐ3 | 09/09 | Viết Stored Procedure (mục 5, tài liệu 02) | ✅ Xong — 42 SP, đã test qua `sqlcmd` (kể cả rollback) |
 | GĐ4 | 09/09–12/09 | Code song song 3 module UI + `DangKyDAL` nghiệp vụ tính tiền | ✅ Xong — toàn bộ 10 form + DAL/Entities |
-| GĐ5 | 12/09–13/09 | Ghép nối module, tích hợp Crystal Report | ⚠️ Ghép nối xong; Crystal Report thật **chưa** tích hợp (xem tài liệu 04) — báo cáo/hóa đơn đang chạy bằng `PrintDocument` |
-| GĐ6 | 14/09 | Kiểm thử toàn bộ, lập & sửa danh sách lỗi | ⏳ Đã build sạch 0 lỗi/0 warning + test SP; **chưa** kiểm thử toàn bộ UI thủ công trên Visual Studio thật |
-| GĐ7 | 14/09–15/09 | Viết báo cáo BTL (dùng lại nội dung 3 file docs/ này làm gốc) | ❌ Chưa làm — cần nhóm tự viết theo `QuidinhTrinhbayBaocao_v4_5_2_1.pdf` |
+| GĐ5 | 12/09–13/09 | Ghép nối module, tích hợp Crystal Report | ✅ Xong — `rptHoaDon.rpt`/`rptDoanhThu.rpt` đã thiết kế và hiển thị qua `CrystalReportViewer` (xem tài liệu 04) |
+| GĐ6 | 14/09 | Kiểm thử toàn bộ, lập & sửa danh sách lỗi | ✅ Xong — build sạch 0 lỗi/0 warning, đã test thủ công các luồng chính (đặt phòng, trả phòng + in hóa đơn Crystal Report, báo cáo doanh thu) trên Visual Studio thật |
+| GĐ7 | 14/09–15/09 | Viết báo cáo BTL (dùng lại nội dung 3 file docs/ này làm gốc) | ✅ Xong — `SourceCode/BaoCao/NoiDungBaoCao.html` + xuất PDF/DOCX qua `TaoBaoCao.ps1`/`TaoDocx.ps1` |
 | GĐ8 | 16/09 | Build release, đóng gói kèm Crystal Report Runtime, nén ZIP | ❌ Chưa làm |
 
 ## 8. Ghi chú đóng gói (GĐ8)
@@ -125,10 +131,11 @@ Gợi ý triển khai: viết 1 class `BaseForm` hoặc `KeyboardHelper` dùng c
 
 ## 9. Việc còn thiếu trước khi nộp bài
 
-- **Kiểm thử thủ công toàn bộ UI** trên máy có Visual Studio + SQL Server thật (F5 chạy thử từng form, thử các luồng lỗi: nhập sai định dạng, hủy giữa chừng...). Đã test kỹ tầng Stored Procedure qua `sqlcmd`, nhưng chưa có ai bấm thử giao diện thật.
-- **Crystal Report thật** — hiện dùng `PrintDocument` chạy được ngay; muốn đúng 100% yêu cầu đề bài cần làm theo [04-HuongDan-TichHop-CrystalReport.md](./04-HuongDan-TichHop-CrystalReport.md) trên máy đã cài Crystal Reports for VS.
-- **Quyển báo cáo BTL (PDF)** theo `QuidinhTrinhbayBaocao_v4_5_2_1.pdf` — chưa viết; có thể dùng lại nội dung phân tích/thiết kế trong `docs/01`, `docs/02` làm gốc.
-- **Đóng gói nộp bài** (GĐ8): build Release, kèm Crystal Report Runtime (nếu tích hợp Crystal Report thật), nén ZIP gồm mã nguồn + backup CSDL + báo cáo PDF.
+- **Đóng gói nộp bài** (GĐ8): build Release, kèm bộ cài SAP Crystal Reports Runtime Engine (64-bit) (máy chấm bài có thể chưa cài), nén ZIP gồm mã nguồn + backup CSDL + báo cáo PDF — đây là việc duy nhất còn lại trước khi nộp.
+
+*(Đã xong, không còn thiếu)* Kiểm thử thủ công toàn bộ UI trên Visual Studio + SQL Server thật; tích hợp
+Crystal Report thật (`rptHoaDon.rpt`, `rptDoanhThu.rpt`); quyển báo cáo BTL
+(`SourceCode/BaoCao/NoiDungBaoCao.html`, xuất PDF/DOCX theo `QuidinhTrinhbayBaocao_v4_5_2_1.pdf`).
 
 *(Đã xong, không còn thiếu)* Form đăng nhập/phân quyền (`frmDangNhap`, `frmDoiMatKhau`) — tuy đề bài và
 `PhanCongNhiemVu.docx` không yêu cầu, nhưng đã làm theo yêu cầu bổ sung của nhóm: đăng nhập bằng

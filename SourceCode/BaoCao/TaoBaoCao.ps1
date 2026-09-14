@@ -38,7 +38,18 @@ $ErrorActionPreference = "Continue"
 & $edgePath --headless --disable-gpu --no-pdf-header-footer "--print-to-pdf=$pdfPath" $fileUrl *> $null
 $ErrorActionPreference = $prevPref
 
-Start-Sleep -Seconds 1
+# Edge ghi file bat dong bo - cho toi da 15s, kiem tra file da xuat hien VA da ngung tang dung luong
+# (thay vi Start-Sleep 1 co dinh, hay bao loi gia "khong tao duoc PDF" du file thuc ra van duoc tao).
+$maxWait = 15
+$lastSize = -1
+for ($i = 0; $i -lt $maxWait; $i++) {
+    Start-Sleep -Seconds 1
+    if (Test-Path $pdfPath) {
+        $curSize = (Get-Item $pdfPath).Length
+        if ($curSize -eq $lastSize -and $curSize -gt 0) { break }
+        $lastSize = $curSize
+    }
+}
 
 if (Test-Path $pdfPath) {
     $size = (Get-Item $pdfPath).Length
